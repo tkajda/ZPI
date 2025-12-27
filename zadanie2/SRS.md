@@ -288,10 +288,12 @@ System będzie komunikował się z zewnętrznymi systemami:
 ## 7. Dodatki
 
 ### Dodatek A: Modele Analityczne
-[Diagram Przypadków Użycia]
+*   **Diagram Przypadków Użycia (Use Case):** Patrz plik `images/use_case_diagram.png`.
+*   **Diagram Klas:** Patrz plik `images/class_diagram.png`.
 
 ### Dodatek B: Persony Użytkowników
-[Opis person]
+Szczegółowe karty person (Anna i Piotr) znajdują się w pliku `images/personas.pdf`.
 
 ### Dodatek C: Kwestie do Rozwiązania
-[Pytania i niejasności]
+1.  Wybór dostawcy hostingu wideo (Vimeo Pro vs AWS S3).
+2.  Decyzja o frameworku frontendowym (Angular vs React - zespół preferuje Angular).
