@@ -236,25 +236,30 @@ System będzie komunikował się z zewnętrznymi systemami:
 
 ## 5. Atrybuty Jakościowe
 
-### Jakość Wykonania
-**Wydajność:**
-*   [Wymaganie]
+### 5.1. Jakość Wykonania
 
-**Dostępność:**
-*   [Wymaganie]
+**Wydajność (Performance):**
+*   **WNF-WYD-01:** Czas startu wideo (Time to First Frame) **< 2 sekundy** przy łączu 10 Mbps.
+*   **WNF-WYD-02:** Czas odpowiedzi API na zapytanie o listę kursów < 500 ms.
 
-**Bezpieczeństwo:**
-*   [Wymaganie]
+**Dostępność (Availability):**
+*   **WNF-NIEZ-01:** Dostępność systemu na poziomie **99.5%** w skali miesiąca (~3.5h downtime).
+*   **WNF-NIEZ-02:** Okna serwisowe tylko w godzinach 2:00-4:00 w nocy.
 
-**Skalowalność:**
-*   [Wymaganie]
+**Bezpieczeństwo (Security):**
+*   **WNF-BEZ-01:** Wymuszenie haseł o sile min. 50 bitów entropii.
+*   **WNF-BEZ-02:** Dane osobowe szyfrowane algorytmem AES-256 (At-Rest).
 
-### Jakość Projektu
-**Modyfikowalność:**
-*   [Wymaganie]
+**Skalowalność (Scalability):**
+*   **WNF-SKAL-01:** Możliwość obsłużenia 1000 jednoczesnych użytkowników bez spadku wydajności (Auto-scaling).
 
-**Przenośność:**
-*   [Wymaganie]
+### 5.2. Jakość Projektu
+
+**Modyfikowalność (Modifiability):**
+*   **WNF-ROZ-01:** Czas dodania nowego typu zadania (quiz plugin) < 16 roboczogodzin.
+
+**Przenośność (Portability):**
+*   **WNF-PRZEN-01:** System zgodny z kontenerami Docker (Kubernetes ready).
 
 ### 5.1. Priorytetyzacja Atrybutów Jakościowych
 [Opis priorytetów]
