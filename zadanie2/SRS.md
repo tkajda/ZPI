@@ -209,7 +209,25 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **Then:** System pobiera dane o ukończonych kursach.
 *   **And:** Pobieram wygenerowany plik z raportem.
 
-### [Placeholder: Następna Funkcjonalność]
+### 4.6. Inteligentny Asystent Powtórek (US-7)
+
+**Opis:** Algorytm sugerujący powtórki materiału w optymalnych odstępach czasu (SR).
+**Historyjka Użytkownika:**
+*   Jako pracownik,
+*   chcę otrzymywać codzienne, krótkie zestawy pytań,
+*   aby utrwalać wiedzę w optymalnych odstępach czasu.
+
+**Cel Biznesowy:** Zapobieganie zapominaniu (Krzywa Zapominania).
+**Warunki Wstępne:** Użytkownik ukończył przynajmniej jeden moduł.
+**Warunki Końcowe:** Wyniki powtórek aktualizują harmonogram kolejnych pytań.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Codzienna sesja powtórkowa**
+*   **Given:** Mam zaplanowane powtórki na dzisiaj.
+*   **When:** Loguję się do systemu i widzę powiadomienie "Czas na powtórkę".
+*   **Then:** System prezentuje mi 5 szybkich pytań z materiału przerobionego w przeszłości.
+*   **And:** Jeśli odpowiem błędnie, pytanie wróci do mnie szybciej (np. jutro).
 
 ### 4.1. Priorytetyzacja Wymagań
 [Tabela priorytetyzacji]
