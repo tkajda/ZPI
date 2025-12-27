@@ -169,6 +169,26 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **And:** Na ekranie pojawia się pytanie wielokrotnego wyboru.
 *   **And:** Nie mogę wznowić odtwarzania bez udzielenia odpowiedzi.
 
+### 4.4. Weryfikacja Wiedzy - Quiz (US-4)
+
+**Opis:** Test sprawdzający wiedzę po zakończeniu modułu szkoleniowego.
+**Historyjka Użytkownika:**
+*   Jako pracownik,
+*   chcę rozwiązać test sprawdzający po module,
+*   aby potwierdzić zdobyte umiejętności i zaliczyć kurs.
+
+**Cel Biznesowy:** Potwierdzenie nabycia kompetencji.
+**Warunki Wstępne:** Użytkownik ukończył wszystkie materiały wideo w module.
+**Warunki Końcowe:** Wynik testu jest zapisany w profilu użytkownika.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Zaliczenie testu**
+*   **Given:** Ukończyłem oglądanie materiałów w module.
+*   **When:** Przystępuję do quizu i uzyskuję wynik > 80%.
+*   **Then:** Moduł otrzymuje status "Zaliczony".
+*   **And:** System gratuluje sukcesu i odblokowuje kolejny moduł (jeśli istnieje).
+
 ### [Placeholder: Następna Funkcjonalność]
 
 ### 4.1. Priorytetyzacja Wymagań
