@@ -27,10 +27,14 @@ System będzie umożliwiał zarządzanie ścieżkami rozwoju, przydzielanie kurs
 System nie będzie obsługiwał płatności za kursy (wszystkie materiały są wewnętrzne lub opłacone ryczałtem) ani rekrutacji nowych pracowników.
 
 ### 1.3. Definicje, Akronimy i Skróty
-*   **Termin:** Definicja
+*   **LMS (Learning Management System):** System zarządzania nauczaniem.
+*   **Learning Path:** Zorganizowana sekwencja kursów i materiałów mająca na celu rozwój konkretnych kompetencji.
+*   **Active Recall:** Metoda nauki polegająca na aktywnym przywoływaniu informacji (np. odpowiadanie na pytania w trakcie wideo).
+*   **Spaced Repetition:** Metoda nauki oparta na powtórkach rozłożonych w czasie.
+*   **KPI (Key Performance Indicator):** Kluczowy wskaźnik efektywności.
 
 ### 1.4. Przegląd Dokumentu
-[Krótki opis zawartości kolejnych rozdziałów.]
+Dokument składa się z 7 rozdziałów. Po wstępie (Rozdział 1), Rozdział 2 przedstawia ogólny opis systemu, w tym charakterystykę użytkowników. Rozdział 3 definiuje wymagania interfejsów. Kluczowy Rozdział 4 szczegółowo opisuje wymagania funkcjonalne w formacie User Stories. Rozdział 5 to wymagania niefunkcjonalne. Rozdział 6 zawiera analizę porównawczą, a Rozdział 7 dodatki, w tym diagramy.
 
 ---
 
