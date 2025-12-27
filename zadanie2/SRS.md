@@ -94,7 +94,16 @@ System musi być responsywny (RWD) i obsługiwać urządzenia mobilne oraz deskt
 *Makiety (Low-Fi) znajdują się w katalogu `images/`.*
 
 ### 3.2. Interfejsy Programowe (API)
-[Opis integracji z innymi systemami.]
+System będzie komunikował się z zewnętrznymi systemami:
+
+1.  **System HR (ERP):**
+    *   **Cel:** Pobieranie i aktualizacja listy pracowników, struktury organizacyjnej i stanowisk.
+    *   **Protokół:** REST API / JSON.
+    *   **Częstotliwość:** Synchronizacja nocna (Batch).
+
+2.  **System Uwierzytelniania (SSO):**
+    *   **Cel:** Logowanie pracowników firmowym kontem.
+    *   **Protokół:** OAuth 2.0 / OpenID Connect (Azure AD).
 
 ---
 
