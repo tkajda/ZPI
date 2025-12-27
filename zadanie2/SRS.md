@@ -83,7 +83,15 @@ System Intelligent LMS składa się z następujących głównych modułów funkc
 ## 3. Wymagania Dotyczące Interfejsów Zewnętrznych
 
 ### 3.1. Interfejsy Użytkownika (UI)
-[Opis wyglądu i stylu. Linki do makiet (Mockups).]
+Aplikacja będzie posiadać interfejs webowy (SPA) zaprojektowany zgodnie z zasadami **Material Design**. Priorytetem jest czytelność i intuicyjność (User-Friendly).
+System musi być responsywny (RWD) i obsługiwać urządzenia mobilne oraz desktopowe.
+
+**Główne widoki:**
+*   Dashboard użytkownika (Moje Ścieżki).
+*   Katalog Kursów (Wyszukiwarka).
+*   Odtwarzacz Wideo z panelem bocznym.
+
+*Makiety (Low-Fi) znajdują się w katalogu `images/`.*
 
 ### 3.2. Interfejsy Programowe (API)
 [Opis integracji z innymi systemami.]
