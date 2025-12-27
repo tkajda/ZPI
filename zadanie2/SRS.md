@@ -109,30 +109,26 @@ System będzie komunikował się z zewnętrznymi systemami:
 
 ## 4. Wymagania Funkcjonalne
 
-### [Nazwa Funkcjonalności 1]
+### 4.1. Przeglądanie Katalogu (US-1)
 
-**Opis:** [Opis funkcjonalności]
+**Opis:** Umożliwia pracownikom przeglądanie dostępnych ścieżek rozwoju i filtrowanie ich po kategoriach.
 **Historyjka Użytkownika:**
-*   Jako [rola],
-*   chcę [akcja],
-*   abym [korzyść].
+*   Jako pracownik,
+*   chcę przeglądać katalog dostępnych ścieżek rozwoju,
+*   abym mógł wybrać te zgodne z moimi zainteresowaniami.
 
-**Cel Biznesowy:** [Cel]
-**Warunki Wstępne:** [Preconditions]
-**Warunki Końcowe:** [Postconditions]
+**Cel Biznesowy:** Zwiększenie zaangażowania pracowników w samorozwój.
+**Warunki Wstępne:** Użytkownik zalogowany do systemu.
+**Warunki Końcowe:** Użytkownik widzi listę ścieżek.
 
 **Kryteria Akceptacji:**
 
-**Scenariusz Główny:**
-*   **Given:** [Kontekst]
-*   **When:** [Akcja]
-*   **Then:** [Rezultat]
+**Scenariusz Główny: Wyświetlenie katalogu**
+*   **Given:** Jestem zalogowanym pracownikiem.
+*   **When:** Wchodzę w zakładkę "Katalog".
+*   **Then:** Widzę listę kafelków z nazwami ścieżek, poziomem trudności i czasem trwania.
 
-**Scenariusz Alternatywny:**
-*   ...
-
-**Scenariusz Wyjątkowy:**
-*   ...
+### [Placeholder: Następna Funkcjonalność]
 
 ### 4.1. Priorytetyzacja Wymagań
 [Tabela priorytetyzacji]
