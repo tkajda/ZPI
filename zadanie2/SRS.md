@@ -1,29 +1,30 @@
 # Specyfikacja Wymagań Oprogramowania (SRS)
 
-**Tytuł Projektu:** [Nazwa Projektu]
-**Wersja:** 1.0.0
-**Zespół:** [Lista Członków Zespołu]
+**Tytuł Projektu:** Intelligent LMS
+**Wersja:** 0.1.0
+**Zespół:** Zespół Projektowy ZPI
 
 ---
 
 ## 1. Wstęp
 
 ### 1.1. Cel
-[Zidentyfikuj produkt, którego dotyczą wymagania. Opisz cel dokumentu.]
+Celem niniejszego dokumentu jest zdefiniowanie wymagań funkcjonalnych i niefunkcjonalnych dla systemu "Intelligent LMS". Dokument ten służy jako podstawa do prac projektowych, implementacyjnych oraz testowych. Jest przeznaczony dla zespołu deweloperskiego, kierowników projektu oraz interesariuszy biznesowych (CTO, HR).
 
 ### 1.2. Wizja, Zakres i Cele Produktu
 **Wizja:**
-[Krótka, inspirująca wizja projektu.]
+Stworzenie inteligentnej platformy LMS (Learning Management System), która przekształca organizację w środowisko ciągłego uczenia się ("Learning Organization"), gdzie każdy pracownik ma dostęp do spersonalizowanej ścieżki rozwoju (Learning Path) bezpośrednio powiązanej z celami biznesowymi firmy.
 
 **Zakres:**
-[Co system będzie robił. Główne cele biznesowe i cele użytkowników.]
+System będzie umożliwiał zarządzanie ścieżkami rozwoju, przydzielanie kursów, weryfikację wiedzy poprzez quizy oraz raportowanie postępów.
 
 **Kryteria Akceptacji (KPIs):**
-*   [KPI 1]
-*   [KPI 2]
+*   **Upskilling:** Przeszkolenie 60% kadry technicznej z nowych technologii w ciągu 12 miesięcy.
+*   **Oszczędność:** Redukcja wydatków na zewnętrznych konsultantów o 200 tys. PLN rocznie.
+*   **Zaangażowanie:** Wskaźnik ukończenia kursów na poziomie > 85%.
 
 **Poza Zakresem:**
-[Czego system nie będzie robił.]
+System nie będzie obsługiwał płatności za kursy (wszystkie materiały są wewnętrzne lub opłacone ryczałtem) ani rekrutacji nowych pracowników.
 
 ### 1.3. Definicje, Akronimy i Skróty
 *   **Termin:** Definicja
