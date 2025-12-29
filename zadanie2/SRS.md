@@ -275,8 +275,110 @@ System będzie komunikował się z zewnętrznymi systemami:
 ## 7. Dodatki
 
 ### Dodatek A: Modele Analityczne
-*   **Diagram Przypadków Użycia (Use Case):** Patrz plik `images/use_case_diagram.png`.
-*   **Diagram Klas:** Patrz plik `images/class_diagram.png`.
+*   **Diagram Przypadków Użycia (Use Case):**
+
+```mermaid
+useCaseDiagram
+    actor "Employee" as emp
+    actor "Team Manager" as mgr
+    actor "HR Manager" as hr
+
+    package "Intelligent LMS" {
+        usecase "Browse Catalog (US-1)" as UC1
+        usecase "Play Video (US-3)" as UC2
+        usecase "Active Recall Interaction (US-8)" as UC3
+        usecase "Take Quiz (US-4)" as UC4
+        usecase "Smart Repetitions (US-7)" as UC5
+        usecase "Assign Path (US-2)" as UC6
+        usecase "Generate Reports (US-5)" as UC7
+        usecase "Manage Paths" as UC8
+    }
+
+    emp --> UC1
+    emp --> UC2
+    emp --> UC4
+    emp --> UC5
+    UC2 ..> UC3 : include
+
+    mgr --> UC6
+    mgr --|> emp : inherits
+
+    hr --> UC7
+    hr --> UC8
+```
+
+*   **Diagram Klas:**
+
+```mermaid
+classDiagram
+    class User {
+        +int id
+        +String firstName
+        +String lastName
+        +String email
+        +login()
+    }
+
+    class Employee {
+        +List~LearningPath~ myPaths
+        +browseCatalog()
+        +playVideo()
+    }
+
+    class Manager {
+        +List~Employee~ team
+        +assignPath()
+    }
+
+    class HRManager {
+        +generateReport()
+        +managePaths()
+    }
+
+    class LearningPath {
+        +int id
+        +String name
+        +String difficultyLevel
+        +addCourse()
+    }
+
+    class Course {
+        +int id
+        +String title
+    }
+
+    class Module {
+        +int id
+        +String name
+        +status type
+    }
+
+    class Video {
+        +Time duration
+        +List~Marker~ activeRecallMarkers
+    }
+
+    class Quiz {
+        +int passingScore
+        +start()
+    }
+
+    class Question {
+        +String content
+        +List~Option~ variants
+    }
+
+    User <|-- Employee
+    Employee <|-- Manager
+    User <|-- HRManager
+
+    Employee "1" -- "*" LearningPath : complete
+    LearningPath "1" *-- "*" Course
+    Course "1" *-- "*" Module
+    Module <|-- Video
+    Module <|-- Quiz
+    Quiz "1" *-- "*" Question
+```
 
 ### Dodatek B: Persony Użytkowników
 Szczegółowe karty person (Anna i Piotr) znajdują się w pliku `images/personas.pdf`.
