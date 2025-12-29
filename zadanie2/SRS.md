@@ -132,6 +132,13 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **When:** Wchodzę w zakładkę "Katalog".
 *   **Then:** Widzę listę kafelków z nazwami ścieżek, poziomem trudności i czasem trwania.
 
+**Scenariusz Alternatywny: Brak wyników wyszukiwania**
+*   **Given:** Jestem w katalogu kursów.
+*   **When:** Wpisuję w wyszukiwarkę frazę "Programowanie w COBOL", której nie ma w bazie.
+*   **Then:** Lista kursów jest pusta.
+*   **And:** Wyświetla się komunikat "Nie znaleziono kursów dla podanej frazy".
+*   **And:** System sugeruje "Wyczyść filtry" lub "Zgłoś zapotrzebowanie na kurs".
+
 ### 4.2. Przypisywanie Ścieżek (US-2)
 
 **Opis:** Manager może przypisać ścieżkę obligatoryjną swojemu podwładnemu.
@@ -151,6 +158,13 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **When:** Kliknę "Przypisz Ścieżkę" i wybiorę z listy "Java Advanced".
 *   **Then:** Pracownik otrzymuje powiadomienie e-mail.
 *   **And:** Ścieżka jest widoczna na koncie pracownika.
+
+**Scenariusz Wyjątkowy: Próba przypisania już posiadanej ścieżki**
+*   **Given:** Jestem na profilu pracownika, który ma już przypisaną ścieżkę "Java Advanced".
+*   **When:** Próbuję ponownie przypisać tę samą ścieżkę.
+*   **Then:** Przycisk/opcja wyboru tej ścieżki jest nieaktywna (wyszarzona).
+*   **Or:** System wyświetla komunikat błędu "Użytkownik już realizuje tę ścieżkę".
+*   **And:** Nie wysyła się duplikat powiadomienia.
 
 ### 4.3. Odtwarzanie i Interakcja z Wideo (US-3, US-8)
 
@@ -173,6 +187,13 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **And:** Na ekranie pojawia się pytanie wielokrotnego wyboru.
 *   **And:** Nie mogę wznowić odtwarzania bez udzielenia odpowiedzi.
 
+**Scenariusz Wyjątkowy: Błąd ładowania wideo**
+*   **Given:** Próbuję otworzyć materiał wideo.
+*   **When:** Występuje problem z połączeniem internetowym lub serwerem plików.
+*   **Then:** Odtwarzacz wyświetla komunikat "Nie można załadować materiału. Sprawdź połączenie.".
+*   **And:** Pojawia się przycisk "Spróbuj ponownie".
+*   **And:** Postęp oglądania nie jest tracony (ostatnia znana pozycja jest zachowana lokalnie).
+
 ### 4.4. Weryfikacja Wiedzy - Quiz (US-4)
 
 **Opis:** Test sprawdzający wiedzę po zakończeniu modułu szkoleniowego.
@@ -192,6 +213,13 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **When:** Przystępuję do quizu i uzyskuję wynik > 80%.
 *   **Then:** Moduł otrzymuje status "Zaliczony".
 *   **And:** System gratuluje sukcesu i odblokowuje kolejny moduł (jeśli istnieje).
+
+**Scenariusz Alternatywny: Niezaliczenie testu**
+*   **Given:** Ukończyłem materiały i przystąpiłem do quizu.
+*   **When:** Uzyskuję wynik < 80% (np. 65%).
+*   **Then:** System wyświetla informację "Test niezaliczony. Spróbuj ponownie.".
+*   **And:** Wskazuje sekcje materiału/wideo, które warto powtórzyć przed kolejną próbą.
+*   **And:** Moduł pozostaje w statusie "W toku".
 
 ### 4.5. Raportowanie Postępów (US-5)
 
@@ -213,6 +241,12 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **Then:** System pobiera dane o ukończonych kursach.
 *   **And:** Pobieram wygenerowany plik z raportem.
 
+**Scenariusz Alternatywny: Brak danych do raportu**
+*   **Given:** Wybrałem zakres dat (np. przyszły miesiąc) lub zespół, który nie rozpoczął szkoleń.
+*   **When:** Klikam "Generuj Raport".
+*   **Then:** System wyświetla komunikat "Brak danych dla wybranych kryteriów".
+*   **And:** Nie generuje pustego pliku PDF/CSV.
+
 ### 4.6. Inteligentny Asystent Powtórek (US-7)
 
 **Opis:** Algorytm sugerujący powtórki materiału w optymalnych odstępach czasu (SR).
@@ -232,6 +266,13 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **When:** Loguję się do systemu i widzę powiadomienie "Czas na powtórkę".
 *   **Then:** System prezentuje mi 5 szybkich pytań z materiału przerobionego w przeszłości.
 *   **And:** Jeśli odpowiem błędnie, pytanie wróci do mnie szybciej (np. jutro).
+
+**Scenariusz Alternatywny: Brak powtórek na dziś**
+*   **Given:** Zalogowałem się do systemu.
+*   **And:** Nie mam żadnych zaplanowanych powtórek na dzisiaj (wszystkie karty są "świeże" w pamięci).
+*   **When:** Wchodzę w moduł "Asystent Powtórek".
+*   **Then:** Wyświetla się komunikat "Wszystko na bieżąco! Wróć jutro.".
+*   **And:** System proponuje opcjonalną naukę nowych materiałów.
 
 ### 4.7. Priorytetyzacja Wymagań
 
@@ -385,7 +426,7 @@ classDiagram
 ```
 
 ### Dodatek B: Persony Użytkowników
-Szczegółowe karty person (Anna i Piotr) znajdują się w pliku `images/personas.pdf`.
+Szczegółowe karty person (Anna i Piotr) znajdują się w pliku [personas.md](personas.md).
 
 ### Dodatek C: Kwestie do Rozwiązania
 1.  Wybór dostawcy hostingu wideo (Vimeo Pro vs AWS S3).
