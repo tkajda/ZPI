@@ -447,15 +447,19 @@ System będzie komunikował się z zewnętrznymi systemami:
 **Konkurencja:**
 *   **Udemy for Business:** Popularna platforma z kursami wideo.
 *   **Pluralsight:** Platforma skoncentrowana na umiejętnościach technicznych.
+*   **MyBenefit, Medicover Benefits:** Platformy skupione wyłącznie na świadczeniach pozapłacowych, bez powiązania z rozwojem kompetencji.
+
 
 **Kryteria Oceny:**
 1.  **Materiały Wewnętrzne:** Czy można hostować własne wideo?
 2.  **Spaced Repetition:** Czy system wspiera inteligentne powtórki?
 3.  **Koszt:** Model rozliczeń.
+4.  **System Benefitowy i Wellbeing:** Czy system pozwala na elastyczną wymianę punktów na usługi prozdrowotne i rozwojowe?
 
 **Synteza Wyników:**
 *   **Udemy/Pluralsight:** Oferują świetne materiały ogólne, ale brakuje im wsparcia dla specyficznych procesów firmowych i hostingu tajnych materiałów wewnętrznych. Żadna z nich nie posiada wbudowanego modułu Active Recall/Spaced Repetition w standardzie.
 *   **Intelligent LMS:** Wypełnia niszę poprzez połączenie własnych treści (Internal Knowledge) z nowoczesnymi metodami nauki (SR/Active Recall), co jest kluczowe dla ROI.
+*   **MyBenefit/Kafeterie:** Skupiają się wyłącznie na katalogu nagród. Brak integracji z procesem szkoleniowym sprawia, że nie wspierają aktywnie rozwoju kompetencji pracowników.
 
 ---
 
