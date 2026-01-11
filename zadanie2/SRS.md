@@ -286,7 +286,106 @@ System będzie komunikował się z zewnętrznymi systemami:
 *   **Then:** Wyświetla się komunikat "Wszystko na bieżąco! Wróć jutro.".
 *   **And:** System proponuje opcjonalną naukę nowych materiałów.
 
-### 4.7. Priorytetyzacja Wymagań
+### 4.7. Zarządzanie Wirtualnym Portfelem (US-9)
+
+**Opis:** Umożliwia pracownikowi bieżący podgląd stanu posiadanych punktów oraz historii ich zdobywania za aktywność edukacyjną.  
+**Historyjka Użytkownika:**
+*   Jako pracownik,
+*   chcę mieć wgląd w saldo mojego portfela i historię transakcji,
+*   aby wiedzieć, ile punktów zgromadziłem i na jakie benefity mogę je wymienić.
+
+**Cel Biznesowy:** Budowanie motywacji do nauki poprzez transparentność systemu nagród i bezpośrednie powiązanie postępów z korzyściami.  
+**Warunki Wstępne:** Użytkownik jest zalogowany do systemu.  
+**Warunki Końcowe:** Użytkownik wyświetla aktualne saldo punktowe oraz listę operacji historycznych.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Podgląd salda i historii**
+*   **Given:** Jestem zalogowanym pracownikiem i posiadałem wcześniej 100 pkt.
+*   **And:** Właśnie ukończyłem quiz, za który otrzymałem 50 pkt.
+*   **When:** Przechodzę do widoku "Mój Portfel".
+*   **Then:** System wyświetla saldo równe 150 pkt.
+*   **And:** Na liście transakcji widzę nową pozycję: "+50 pkt - Quiz: Podstawy Cloud" z dzisiejszą datą.
+
+
+### 4.8. Realizacja Benefitów w Systemie Kafeteryjnym (US-10)
+
+**Opis:** Moduł wymiany zgromadzonych punktów na usługi zewnętrzne (wellbeing, rozwój) poprzez automatyczną integrację z dostawcami.  
+**Historyjka Użytkownika:**
+*   Jako pracownik,
+*   chcę samodzielnie wymieniać punkty na wybrane usługi prozdrowotne lub rozwojowe,
+*   aby sfinansować mój wellbeing bez konieczności składania papierowych wniosków.
+
+**Cel Biznesowy:** Zwiększenie utylizacji budżetu do poziomu 95% poprzez eliminację barier biurokratycznych w dostępie do świadczeń.  
+**Warunki Wstępne:** Użytkownik posiada na koncie liczbę punktów równą lub wyższą niż cena wybranego benefitu.  
+**Warunki Końcowe:** Saldo punktowe zostaje pomniejszone, a system generuje unikalny kod dostępu lub przesyła potwierdzenie do dostawcy.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Pomyślna wymiana punktów**
+*   **Given:** Posiadam 500 pkt w portfelu.
+*   **And:** Wybrałem benefit "Voucher do fizjoterapeuty" o wartości 400 pkt.
+*   **When:** Klikam przycisk "Wymień punkty" i potwierdzam operację w oknie modalnym.
+*   **Then:** Moje saldo zostaje natychmiast pomniejszone o 400 pkt (nowy stan: 100 pkt).
+*   **And:** System wyświetla unikalny kod vouchera gotowy do użycia.
+*   **And:** Otrzymuję e-mail z potwierdzeniem transakcji i instrukcją realizacji.
+
+**Scenariusz Alternatywny: Niewystarczające saldo**
+*   **Given:** Posiadam 100 pkt w portfelu.
+*   **And:** Wybrałem benefit "Karta sportowa" o wartości 300 pkt.
+*   **When:** Wyświetlam szczegóły tego benefitu.
+*   **Then:** Przycisk "Wymień punkty" jest nieaktywny (wyszarzony).
+*   **And:** Pod ceną widnieje komunikat: "Brakuje Ci 200 pkt, aby odebrać ten benefit".
+
+
+### 4.9. Zarządzanie Ofertą Marketplace (US-11)
+
+**Opis:** Panel administracyjny dla działu HR służący do konfigurowania katalogu nagród i zarządzania relacjami z dostawcami.  
+**Historyjka Użytkownika:**
+*   Jako HR Manager (Anna),
+*   chcę dodawać nowe benefity do katalogu i określać ich wartość punktową,
+*   aby oferta była atrakcyjna dla pracowników i optymalizowała wykorzystanie budżetu.
+
+**Cel Biznesowy:** Efektywne zarządzanie budżetem szkoleniowo-benefitowym i dopasowanie oferty do realnych potrzeb pracowników.  
+**Warunki Wstępne:** Użytkownik posiada uprawnienia Administratora lub HR Managera.  
+**Warunki Końcowe:** Nowy benefit jest opublikowany i dostępny dla pracowników w katalogu Marketplace.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Dodanie nowego benefitu*
+*   **Given:** Jestem zalogowana jako HR Manager i znajduję się w panelu zarządzania Marketplace.
+*   **When:** Wypełniam formularz dodawania benefitu:  
+    Nazwa ("Sesja z psychologiem"),  
+    Cena (250 pkt),  
+    Kategoria ("Wellbeing"),  
+    Dostawca ("MindFull API").
+*   **And:** Klikam "Opublikuj".
+*   **Then:** Nowa oferta pojawia się na liście benefitów dostępnych dla wszystkich pracowników.
+
+
+### 4.10. Monitoring Utylizacji Budżetu (US-12)
+
+**Opis:** Moduł analityczny generujący raporty dotyczące wykorzystania środków finansowych w ramach platformy kafeteryjnej.  
+**Historyjka Użytkownika:**
+*   Jako HR Manager (Anna),
+*   chcę generować raporty utylizacji budżetu w czasie rzeczywistym,
+*   aby monitorować realizację celu 95% wykorzystania środków i reagować na odchylenia.
+
+**Cel Biznesowy:** Kontrola kluczowych wskaźników efektywności (KPI) projektu oraz optymalizacja wydatków firmy.  
+**Warunki Wstępne:** W systemie zarejestrowano aktywność użytkowników w module portfela.  
+**Warunki Końcowe:** System generuje interaktywny raport finansowy lub plik eksportu z danymi o utylizacji budżetu.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Generowanie raportu**
+*   **Given:** Jestem zalogowana jako HR Manager.
+*   **When:** Przechodzę do sekcji "Raporty" i wybieram "Analiza wykorzystania budżetu".
+*   **Then:** System wyświetla czytelny wykres porównujący sumę wydanych punktów z całkowitym budżetem rocznym.
+*   **And:** Widzę wyliczony procent utylizacji (np. "Obecna utylizacja: 68%").
+*   **And:** System sugeruje listę najmniej popularnych benefitów do ewentualnej wymiany.
+
+
+### 4.11. Priorytetyzacja Wymagań
 
 | ID | Funkcjonalność | Priorytet (MoSCoW) |
 | :--- | :--- | :--- |
@@ -294,8 +393,12 @@ System będzie komunikował się z zewnętrznymi systemami:
 | US-2 | Przypisywanie Ścieżek | **Must Have** |
 | US-3 | Odtwarzacz Wideo | **Must Have** |
 | US-4 | Weryfikacja Wiedzy | **Must Have** |
+| US-9 | Zarządzanie Wirtualnym Portfelem | **Must Have** 
+| US-10 | Realizacja Benefitów (Kafeteria) | **Must Have** 
 | US-5 | Raportowanie Postępów | **Should Have** |
 | US-7 | Asystent Powtórek | **Should Have** |
+| US-11 | Zarządzanie Ofertą Marketplace | **Should Have**
+| US-12 | Monitoring Utylizacji Budżetu | **Should Have**
 
 ---
 
