@@ -48,3 +48,60 @@ Strona główna katalogu z możliwością filtrowania i wyszukiwania.
 "US-5: Generowanie raportu postępów",Story,"Jako HR Manager, chcę wygenerować raport (CSV/PDF) dla wybranego zespołu, aby rozliczyć realizację celów szkoleniowych.",Medium,5,,2
 "Logowanie SSO (Azure AD)",Story,"Jako użytkownik, chcę logować się kontem firmowym, aby nie musieć pamiętać nowego hasła.",High,5,,2
 "US-7: Algorytm Asystenta Powtórek",Story,"Jako pracownik, chcę otrzymywać sugestie powtórek oparte o algorytm Spaced Repetition, aby trwale zapamiętać wiedzę.",Low,8,,1
+
+
+"E03: Marketplace",Epic,"Funkcjonalności związane z systemem motywacyjnym, portfelem punktowym i wymianą punktów na nagrody.",High,,3,
+"US-09: Wymiana punktów w Marketplace",Story,"*Jako pracownik, chcę wymienić zgromadzone punkty edukacyjne na nagrodę, aby sfinansować certyfikację lub otrzymać inny benefit bez składania wniosków.*
+
+**Opis:**
+Implementacja mechanizmu transakcyjnego, który sprawdza saldo użytkownika i rejestruje wymianę punktów na wybrany benefit. Wymaga blokady transakcyjnej w bazie danych.
+
+**Kryteria Akceptacji:**
+1. **Scenario: Pomyślny zakup**
+   - **Given:** Mam 1000 pkt na koncie.
+   - **And:** Wybrałem nagrodę ""Voucher AWS"" kosztującą 800 pkt.
+   - **When:** Klikam ""Wymień"" i potwierdzam operację.
+   - **Then:** System odejmuje 800 pkt z mojego salda (pozostaje 200 pkt).
+   - **And:** Status nagrody zmienia się na ""Oczekiwanie na realizację"".
+
+2. **Scenario: Brak środków**
+   - **Given:** Mam 100 pkt.
+   - **When:** Próbuję kupić nagrodę za 500 pkt.
+   - **Then:** Przycisk zakupu jest nieaktywny lub system wyświetla komunikat ""Niewystarczająca liczba punktów"".",High,8,,3
+"US-10: Przeglądanie katalogu nagród",Story,"*Jako pracownik, chcę przeglądać dostępne nagrody i filtrować je po kategoriach, aby znaleźć cel, na który chcę zbierać punkty.*
+
+**Opis:**
+Stworzenie widoku kafelkowego (Grid) prezentującego dostępne nagrody (tytuł, zdjęcie, cena w punktach) z możliwością filtracji.
+
+**Kryteria Akceptacji:**
+1. **Scenario: Filtrowanie po kategorii**
+   - **Given:** Jestem w zakładce Marketplace.
+   - **When:** Wybieram kategorię ""Książki"".
+   - **Then:** Widzę listę dostępnych książek z cenami w punktach.
+   - **And:** Inne kategorie (np. ""Konferencje"") są ukryte.
+
+2. **Scenario: Pasek postępu**
+   - **Given:** Oglądam nagrodę, na którą mnie nie stać.
+   - **Then:** Widzę pasek postępu pokazujący, ile punktów brakuje mi do jej zdobycia.",Medium,5,,3
+"US-11: Widok portfela i historii",Story,"*Jako pracownik, chcę widzieć historię przyznanych i wydanych punktów, aby mieć kontrolę nad moim budżetem rozwojowym.*
+
+**Opis:**
+Implementacja widoku ""Mój Portfel"" prezentującego saldo oraz listę historycznych transakcji.
+
+**Kryteria Akceptacji:**
+1. **Scenario: Wyświetlenie historii**
+   - **Given:** Wchodzę w ""Mój Portfel"".
+   - **Then:** Widzę aktualne saldo punktowe (np. 1250 pkt).
+   - **And:** Widzę listę operacji (Data, Opis, Wartość).
+   - **And:** Operacje uznania są na zielono (np. ""+50 pkt - Quiz Java""), a obciążenia na czerwono (np. ""-800 pkt - Voucher"").",Medium,3,,3
+"HR: Zarządzanie katalogiem nagród",Story,"*Jako HR Manager, chcę dodawać nowe nagrody i ustalać ich cenę w punktach, aby zarządzać ofertą benefitową firmy.*
+
+**Opis:**
+Panel administracyjny (CRUD) dla encji Reward, dostępny tylko dla roli HR.
+
+**Kryteria Akceptacji:**
+1. **Scenario: Dodanie nowej nagrody**
+   - **Given:** Jestem zalogowany jako HR Manager.
+   - **When:** Dodaję nową nagrodę ""Wejściówka na konferencję"" i ustalam cenę na 2500 pkt.
+   - **Then:** Nagroda pojawia się w katalogu widocznym dla pracowników.
+   - **And:** Mogę edytować jej dostępność (np. ukryć, gdy pula się wyczerpie).",Low,5,,3
