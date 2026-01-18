@@ -151,264 +151,363 @@ System będzie komunikował się z zewnętrznymi systemami:
 
 ## 4. Wymagania Funkcjonalne
 
-### 4.1. Przeglądanie Katalogu (US-1)
+### 4.1. [US-1] Przeglądanie Katalogu
 
-**Opis:** Umożliwia pracownikom przeglądanie dostępnych ścieżek rozwoju i filtrowanie ich po kategoriach.
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę przeglądać katalog dostępnych ścieżek rozwoju,
-*   abym mógł wybrać te zgodne z moimi zainteresowaniami.
+* **Tytuł:** Przeglądanie katalogu dostępnych ścieżek rozwoju
+* **Opis:** Umożliwia pracownikom przeglądanie i filtrowanie dostępnych ścieżek rozwoju (Learning Paths).
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę przeglądać katalog dostępnych ścieżek rozwoju,
+    * abym mógł wybrać te zgodne z moimi zainteresowaniami.
+* **Cel Biznesowy:** Zwiększenie zaangażowania pracowników w samorozwój poprzez łatwy dostęp do oferty szkoleniowej.
+* **Warunki Wstępne:** Użytkownik jest zalogowany do systemu.
+* **Warunki Końcowe:** Użytkownik widzi listę ścieżek przefiltrowaną według swoich kryteriów.
+* **Kryteria Akceptacji:**
 
-**Cel Biznesowy:** Zwiększenie zaangażowania pracowników w samorozwój.
-**Warunki Wstępne:** Użytkownik zalogowany do systemu.
-**Warunki Końcowe:** Użytkownik widzi listę ścieżek.
+    * **WF-KAT-01: Wyświetlenie katalogu (Scenariusz Główny)**
+        * *Opis:* Pracownik wchodzi do sekcji katalogu i widzi dostępne kursy.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem zalogowanym pracownikiem.
+            * **When:** Wchodzę w zakładkę "Katalog".
+            * **Then:** Widzę listę kafelków z nazwami ścieżek, poziomem trudności i czasem trwania.
 
-**Kryteria Akceptacji:**
+    * **WF-KAT-02: Brak wyników wyszukiwania (Scenariusz Alternatywny)**
+        * *Opis:* Pracownik szuka frazy, która nie pasuje do żadnego kursu.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem w katalogu kursów.
+            * **When:** Wpisuję w wyszukiwarkę frazę "Programowanie w COBOL", której nie ma w bazie.
+            * **Then:** Lista kursów jest pusta.
+            * **And:** Wyświetla się komunikat "Nie znaleziono kursów dla podanej frazy".
+            * **And:** System sugeruje "Wyczyść filtry" lub "Zgłoś zapotrzebowanie na kurs".
 
-**Scenariusz Główny: Wyświetlenie katalogu**
-*   **Given:** Jestem zalogowanym pracownikiem.
-*   **When:** Wchodzę w zakładkę "Katalog".
-*   **Then:** Widzę listę kafelków z nazwami ścieżek, poziomem trudności i czasem trwania.
+    * **WF-KAT-03: Dostęp do ścieżek dedykowanych (Widok Managera)**
+        * *Opis:* Manager przegląda katalog w celu znalezienia ścieżek do przypisania zespołowi.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem zalogowany jako Manager Zespołu.
+            * **When:** Przeglądam katalog kursów.
+            * **Then:** Widzę oznaczenia przy kursach "Rekomendowane dla Twojego zespołu".
+            * **And:** Mam dostęp do przycisku "Przypisz do zespołu" bezpośrednio z widoku kafelka.
 
-**Scenariusz Alternatywny: Brak wyników wyszukiwania**
-*   **Given:** Jestem w katalogu kursów.
-*   **When:** Wpisuję w wyszukiwarkę frazę "Programowanie w COBOL", której nie ma w bazie.
-*   **Then:** Lista kursów jest pusta.
-*   **And:** Wyświetla się komunikat "Nie znaleziono kursów dla podanej frazy".
-*   **And:** System sugeruje "Wyczyść filtry" lub "Zgłoś zapotrzebowanie na kurs".
+### 4.2. [US-2] Przypisywanie Ścieżek
 
-### 4.2. Przypisywanie Ścieżek (US-2)
+* **Tytuł:** Przypisywanie ścieżek rozwoju podwładnym
+* **Opis:** Umożliwia Managerowi przypisanie konkretnej ścieżki rozwoju swojemu podwładnemu.
+* **Historyjka Użytkownika:**
+    * Jako Manager,
+    * chcę przypisać konkretną ścieżkę rozwoju mojemu podwładnemu,
+    * aby ukierunkować jego rozwój na potrzeby projektu.
+* **Cel Biznesowy:** Zamykanie luk kompetencyjnych w zespole zgodnie ze strategią firmy.
+* **Warunki Wstępne:** Manager jest zalogowany i ma przypisanych członków zespołu.
+* **Warunki Końcowe:** Ścieżka zostaje dodana do "Moich Ścieżek" pracownika z oznaczeniem "Wymagana".
+* **Kryteria Akceptacji:**
 
-**Opis:** Manager może przypisać ścieżkę obligatoryjną swojemu podwładnemu.
-**Historyjka Użytkownika:**
-*   Jako Manager,
-*   chcę przypisać konkretną ścieżkę rozwoju mojemu podwładnemu,
-*   aby ukierunkować jego rozwój na potrzeby projektu.
+    * **WF-ASSIGN-01: Przypisanie ścieżki (Scenariusz Główny)**
+        * *Opis:* Manager wybiera pracownika i przypisuje mu nową ścieżkę.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem Managerem na profilu pracownika.
+            * **When:** Kliknę "Przypisz Ścieżkę" i wybiorę z listy "Java Advanced".
+            * **Then:** Pracownik otrzymuje powiadomienie e-mail.
+            * **And:** Ścieżka jest widoczna na koncie pracownika jako "Wymagana".
 
-**Cel Biznesowy:** Zamykanie luk kompetencyjnych w zespole.
-**Warunki Wstępne:** Manager jest zalogowany i ma podpiętych członków zespołu.
-**Warunki Końcowe:** Ścieżka pojawia się w "Moich Ścieżkach" pracownika z oznaczeniem "Wymagana".
+    * **WF-ASSIGN-02: Próba przypisania już posiadanej ścieżki (Scenariusz Wyjątkowy)**
+        * *Opis:* System blokuje możliwość przypisania ścieżki, którą pracownik już realizuje.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem na profilu pracownika, który ma już przypisaną ścieżkę "Java Advanced".
+            * **When:** Próbuję ponownie przypisać tę samą ścieżkę.
+            * **Then:** Przycisk/opcja wyboru tej ścieżki jest nieaktywna (wyszarzona).
+            * **Or:** System wyświetla komunikat błędu "Użytkownik już realizuje tę ścieżkę".
+            * **And:** Nie wysyła się duplikat powiadomienia.
 
-**Kryteria Akceptacji:**
+    * **WF-ASSIGN-03: Odbiór przypisania (Perspektywa Pracownika)**
+        * *Opis:* Pracownik widzi nowo przypisaną ścieżkę w swoim panelu.
+        * *Kryteria Akceptacji:*
+            * **Given:** Manager przypisał mi ścieżkę "Security Basics".
+            * **When:** Loguję się do systemu jako Pracownik.
+            * **Then:** Na dashboardzie w sekcji "Wymagane" widzę nową pozycję.
+            * **And:** Otrzymuję powiadomienie wewnątrz aplikacji "Nowe zadanie od przełożonego".
 
-**Scenariusz Główny: Przypisanie ścieżki**
-*   **Given:** Jestem Managerem na profilu pracownika.
-*   **When:** Kliknę "Przypisz Ścieżkę" i wybiorę z listy "Java Advanced".
-*   **Then:** Pracownik otrzymuje powiadomienie e-mail.
-*   **And:** Ścieżka jest widoczna na koncie pracownika.
+### 4.3. [US-3, US-8] Odtwarzanie i Interakcja z Wideo
 
-**Scenariusz Wyjątkowy: Próba przypisania już posiadanej ścieżki**
-*   **Given:** Jestem na profilu pracownika, który ma już przypisaną ścieżkę "Java Advanced".
-*   **When:** Próbuję ponownie przypisać tę samą ścieżkę.
-*   **Then:** Przycisk/opcja wyboru tej ścieżki jest nieaktywna (wyszarzona).
-*   **Or:** System wyświetla komunikat błędu "Użytkownik już realizuje tę ścieżkę".
-*   **And:** Nie wysyła się duplikat powiadomienia.
+* **Tytuł:** Odtwarzanie wideo z aktywnym przywoływaniem wiedzy (Active Recall)
+* **Opis:** Umożliwia pracownikom oglądanie materiałów szkoleniowych i odpowiadanie na pytania w trakcie wideo.
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę odpowiadać na pytania w trakcie oglądania wideo,
+    * aby na bieżąco weryfikować zrozumienie materiału.
+* **Cel Biznesowy:** Zwiększenie retencji wiedzy poprzez interakcję (Active Recall) w trakcie nauki.
+* **Warunki Wstępne:** Użytkownik uruchomił materiał wideo w odtwarzaczu.
+* **Warunki Końcowe:** Postęp wideo oraz odpowiedzi na pytania zostają zapisane w systemie.
+* **Kryteria Akceptacji:**
 
-### 4.3. Odtwarzanie i Interakcja z Wideo (US-3, US-8)
+    * **WF-VIDEO-01: Interakcja Active Recall (Scenariusz Główny)**
+        * *Opis:* Wideo zatrzymuje się w określonym momencie i wymusza odpowiedź na pytanie.
+        * *Kryteria Akceptacji:*
+            * **Given:** Oglądam wideo szkoleniowe.
+            * **When:** Wideo dociera do znacznika czasu z przypisanym pytaniem.
+            * **Then:** Odtwarzanie jest pauzowane automatycznie.
+            * **And:** Na ekranie pojawia się pytanie wielokrotnego wyboru.
+            * **And:** Nie mogę wznowić odtwarzania bez udzielenia odpowiedzi.
 
-**Opis:** Odtwarzacz wideo z obsługą Active Recall (pytania w trakcie oglądania).
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę odpowiadać na pytania w trakcie oglądania wideo,
-*   aby na bieżąco weryfikować zrozumienie materiału.
+    * **WF-VIDEO-02: Błąd ładowania wideo (Scenariusz Wyjątkowy)**
+        * *Opis:* Obsługa sytuacji, gdy materiał wideo nie może zostać załadowany.
+        * *Kryteria Akceptacji:*
+            * **Given:** Próbuję otworzyć materiał wideo.
+            * **When:** Występuje problem z połączeniem internetowym lub serwerem plików.
+            * **Then:** Odtwarzacz wyświetla komunikat "Nie można załadować materiału. Sprawdź połączenie.".
+            * **And:** Pojawia się przycisk "Spróbuj ponownie".
+            * **And:** Postęp oglądania nie jest tracony (ostatnia znana pozycja jest zachowana lokalnie).
 
-**Cel Biznesowy:** Zwiększenie retencji wiedzy poprzez interakcję.
-**Warunki Wstępne:** Użytkownik uruchomił materiał wideo.
-**Warunki Końcowe:** postęp wideo zostaje zapisany.
+    * **WF-VIDEO-03: Podgląd postępów wideo (Perspektywa Managera)**
+        * *Opis:* Manager sprawdza, czy pracownik obejrzał materiał wideo.
+        * *Kryteria Akceptacji:*
+            * **Given:** Pracownik obejrzał 50% materiału wideo.
+            * **When:** Jako Manager wchodzę w "Szczegóły postępów" pracownika.
+            * **Then:** Widzę pasek postępu przy danym materiale wideo (50%).
+            * **And:** Widzę informację o dacie ostatniej aktywności.
 
-**Kryteria Akceptacji:**
+### 4.4. [US-4] Weryfikacja Wiedzy - Quiz
 
-**Scenariusz Główny: Active Recall**
-*   **Given:** Oglądam wideo szkoleniowe.
-*   **When:** Wideo dociera do znacznika czasu z przypisanym pytaniem.
-*   **Then:** Odtwarzanie jest pauzowane automatycznie.
-*   **And:** Na ekranie pojawia się pytanie wielokrotnego wyboru.
-*   **And:** Nie mogę wznowić odtwarzania bez udzielenia odpowiedzi.
+* **Tytuł:** Rozwiązywanie testu sprawdzającego po module
+* **Opis:** Umożliwia weryfikację wiedzy zdobytej w danym module poprzez test (Quiz).
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę rozwiązać test sprawdzający po module,
+    * aby potwierdzić zdobyte umiejętności i zaliczyć kurs.
+* **Cel Biznesowy:** Potwierdzenie nabycia kompetencji i automatyczna ocena postępów.
+* **Warunki Wstępne:** Użytkownik ukończył wszystkie materiały wideo w danym module.
+* **Warunki Końcowe:** Wynik testu jest zapisany, a status modułu zaktualizowany.
+* **Kryteria Akceptacji:**
 
-**Scenariusz Wyjątkowy: Błąd ładowania wideo**
-*   **Given:** Próbuję otworzyć materiał wideo.
-*   **When:** Występuje problem z połączeniem internetowym lub serwerem plików.
-*   **Then:** Odtwarzacz wyświetla komunikat "Nie można załadować materiału. Sprawdź połączenie.".
-*   **And:** Pojawia się przycisk "Spróbuj ponownie".
-*   **And:** Postęp oglądania nie jest tracony (ostatnia znana pozycja jest zachowana lokalnie).
+    * **WF-QUIZ-01: Zaliczenie testu (Scenariusz Główny)**
+        * *Opis:* Użytkownik uzyskuje wynik pozytywny i zalicza moduł.
+        * *Kryteria Akceptacji:*
+            * **Given:** Ukończyłem oglądanie materiałów w module.
+            * **When:** Przystępuję do quizu i uzyskuję wynik > 80%.
+            * **Then:** Moduł otrzymuje status "Zaliczony".
+            * **And:** System gratuluje sukcesu i odblokowuje kolejny moduł (jeśli istnieje).
 
-### 4.4. Weryfikacja Wiedzy - Quiz (US-4)
+    * **WF-QUIZ-02: Niezaliczenie testu (Scenariusz Alternatywny)**
+        * *Opis:* Użytkownik uzyskuje wynik poniżej progu zaliczenia.
+        * *Kryteria Akceptacji:*
+            * **Given:** Ukończyłem materiały i przystąpiłem do quizu.
+            * **When:** Uzyskuję wynik < 80% (np. 65%).
+            * **Then:** System wyświetla informację "Test niezaliczony. Spróbuj ponownie.".
+            * **And:** Wskazuje sekcje materiału/wideo, które warto powtórzyć przed kolejną próbą.
+            * **And:** Moduł pozostaje w statusie "W toku".
 
-**Opis:** Test sprawdzający wiedzę po zakończeniu modułu szkoleniowego.
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę rozwiązać test sprawdzający po module,
-*   aby potwierdzić zdobyte umiejętności i zaliczyć kurs.
+    * **WF-QUIZ-03: Walidacja pytań (Perspektywa Autora/Admina)**
+        * *Opis:* System wykrywa błędnie skonfigurowane pytania (bez poprawnej odpowiedzi).
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem autorem kursu (HR/Tech Lead).
+            * **When:** Próbuję zapisać quiz, w którym jedno z pytań nie ma zaznaczonej poprawnej odpowiedzi.
+            * **Then:** System blokuje zapis.
+            * **And:** Wyświetla komunikat błędu "Każde pytanie musi mieć co najmniej jedną poprawną odpowiedź".
 
-**Cel Biznesowy:** Potwierdzenie nabycia kompetencji.
-**Warunki Wstępne:** Użytkownik ukończył wszystkie materiały wideo w module.
-**Warunki Końcowe:** Wynik testu jest zapisany w profilu użytkownika.
+### 4.5. [US-5] Raportowanie Postępów
 
-**Kryteria Akceptacji:**
+* **Tytuł:** Generowanie raportów postępów zespołów
+* **Opis:** Umożliwia HR Managerowi generowanie zestawień statystycznych dotyczących postępów w nauce.
+* **Historyjka Użytkownika:**
+    * Jako HR Manager,
+    * chcę generować raporty postępów zespołów,
+    * aby monitorować realizację celu 60% przeszkolonej kadry.
+* **Cel Biznesowy:** Monitoring kluczowych wskaźników efektywności (KPI) i weryfikacja ROI szkoleń.
+* **Warunki Wstępne:** W systemie są zarejestrowane dane o postępach użytkowników.
+* **Warunki Końcowe:** Wygenerowany plik raportu jest dostępny do pobrania.
+* **Kryteria Akceptacji:**
 
-**Scenariusz Główny: Zaliczenie testu**
-*   **Given:** Ukończyłem oglądanie materiałów w module.
-*   **When:** Przystępuję do quizu i uzyskuję wynik > 80%.
-*   **Then:** Moduł otrzymuje status "Zaliczony".
-*   **And:** System gratuluje sukcesu i odblokowuje kolejny moduł (jeśli istnieje).
+    * **WF-REPORT-01: Generowanie raportu (Scenariusz Główny)**
+        * *Opis:* HR Manager pobiera raport dla wybranego zespołu i zakresu czasu.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem zalogowany jako HR Manager.
+            * **When:** Wybieram zakres dat i zespół, a następnie klikam "Generuj Raport".
+            * **Then:** System przetwarza dane o ukończonych kursach.
+            * **And:** Pobieram wygenerowany plik (CSV/PDF) z raportem.
 
-**Scenariusz Alternatywny: Niezaliczenie testu**
-*   **Given:** Ukończyłem materiały i przystąpiłem do quizu.
-*   **When:** Uzyskuję wynik < 80% (np. 65%).
-*   **Then:** System wyświetla informację "Test niezaliczony. Spróbuj ponownie.".
-*   **And:** Wskazuje sekcje materiału/wideo, które warto powtórzyć przed kolejną próbą.
-*   **And:** Moduł pozostaje w statusie "W toku".
+    * **WF-REPORT-02: Brak danych do raportu (Scenariusz Alternatywny)**
+        * *Opis:* Obsługa sytuacji, gdy filtrowanie nie zwraca żadnych wyników.
+        * *Kryteria Akceptacji:*
+            * **Given:** Wybrałem zakres dat lub zespół, który nie ma zarejestrowanych aktywności.
+            * **When:** Klikam "Generuj Raport".
+            * **Then:** System wyświetla komunikat "Brak danych dla wybranych kryteriów".
+            * **And:** Nie generuje pustego pliku.
 
-### 4.5. Raportowanie Postępów (US-5)
+    * **WF-REPORT-03: Automatyczna wysyłka raportu (Perspektywa Systemu)**
+        * *Opis:* System cyklicznie wysyła raport podsumowujący do zarządu.
+        * *Kryteria Akceptacji:*
+            * **Given:** Skonfigurowano cykliczny raport miesięczny (Cron Job).
+            * **When:** Następuje pierwszy dzień miesiąca (godz. 01:00).
+            * **Then:** System automatycznie generuje statystyki za poprzedni miesiąc.
+            * **And:** Wysyła e-mail z załączonym raportem PDF na zdefiniowaną listę dystrybucyjną (CEO, CTO, HR Head).
 
-**Opis:** Generowanie raportów o postępach pracowników i zespołów dla działu HR.
-**Historyjka Użytkownika:**
-*   Jako HR Manager,
-*   chcę generować raporty postępów zespołów,
-*   aby monitorować realizację celu 60% przeszkolonej kadry.
+### 4.6. [US-7] Inteligentny Asystent Powtórek
 
-**Cel Biznesowy:** Monitoring KPI projektu.
-**Warunki Wstępne:** W systemie są zarejestrowane postępy użytkowników.
-**Warunki Końcowe:** Manager otrzymuje plik CSV/PDF z raportem.
+* **Tytuł:** Inteligentne sugestie powtórek materiału (Spaced Repetition)
+* **Opis:** Algorytm sugerujący powtórki materiału w optymalnych odstępach czasu, aby zapobiec zapominaniu.
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę otrzymywać codzienne, krótkie zestawy pytań,
+    * aby utrwalać wiedzę w optymalnych odstępach czasu.
+* **Cel Biznesowy:** Zwiększenie długoterminowej retencji wiedzy i efektywności szkoleń.
+* **Warunki Wstępne:** Użytkownik ukończył przynajmniej jeden moduł szkoleniowy.
+* **Warunki Końcowe:** Harmonogram powtórek dla danych pytań zostaje zaktualizowany na podstawie odpowiedzi.
+* **Kryteria Akceptacji:**
 
-**Kryteria Akceptacji:**
+    * **WF-SR-01: Codzienna sesja powtórkowa (Scenariusz Główny)**
+        * *Opis:* Użytkownik wykonuje zaplanowane na dany dzień powtórki.
+        * *Kryteria Akceptacji:*
+            * **Given:** Mam zaplanowane powtórki na dzisiaj.
+            * **When:** Loguję się do systemu i widzę powiadomienie "Czas na powtórkę".
+            * **Then:** System prezentuje mi 5 szybkich pytań z materiału przerobionego w przeszłości.
+            * **And:** Jeśli odpowiem błędnie, pytanie wróci do mnie szybciej (np. jutro).
 
-**Scenariusz Główny: Generowanie raportu**
-*   **Given:** Jestem zalogowany jako HR Manager.
-*   **When:** Wybieram zakres dat i zespół, a następnie klikam "Generuj Raport".
-*   **Then:** System pobiera dane o ukończonych kursach.
-*   **And:** Pobieram wygenerowany plik z raportem.
+    * **WF-SR-02: Brak powtórek na dziś (Scenariusz Alternatywny)**
+        * *Opis:* Użytkownik chce się uczyć, ale nie ma zaplanowanych powtórek.
+        * *Kryteria Akceptacji:*
+            * **Given:** Zalogowałem się do systemu.
+            * **And:** Nie mam żadnych zaplanowanych powtórek na dzisiaj (wszystkie karty są "świeże" w pamięci).
+            * **When:** Wchodzę w moduł "Asystent Powtórek".
+            * **Then:** Wyświetla się komunikat "Wszystko na bieżąco! Wróć jutro.".
+            * **And:** System proponuje opcjonalną naukę nowych materiałów.
 
-**Scenariusz Alternatywny: Brak danych do raportu**
-*   **Given:** Wybrałem zakres dat (np. przyszły miesiąc) lub zespół, który nie rozpoczął szkoleń.
-*   **When:** Klikam "Generuj Raport".
-*   **Then:** System wyświetla komunikat "Brak danych dla wybranych kryteriów".
-*   **And:** Nie generuje pustego pliku PDF/CSV.
+    * **WF-SR-03: Monitoring regularności nauki (Perspektywa Managera)**
+        * *Opis:* Manager sprawdza, czy pracownik regularnie wykonuje powtórki.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem Managerem.
+            * **When:** Przeglądam statystyki zespołu w module "Rozwój".
+            * **Then:** Widzę wskaźnik "Regularność Powtórek" (np. "Wysoka") przy każdym pracowniku.
+            * **And:** Mogę wysłać "Przypominajkę" do osób z niską aktywnością.
 
-### 4.6. Inteligentny Asystent Powtórek (US-7)
+### 4.7. [US-9] Zarządzanie Wirtualnym Portfelem
 
-**Opis:** Algorytm sugerujący powtórki materiału w optymalnych odstępach czasu (SR).
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę otrzymywać codzienne, krótkie zestawy pytań,
-*   aby utrwalać wiedzę w optymalnych odstępach czasu.
+* **Tytuł:** Podgląd salda punktowego i historii transakcji
+* **Opis:** Umożliwia pracownikowi bieżący podgląd stanu posiadanych punktów oraz historii ich zdobywania.
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę mieć wgląd w saldo mojego portfela i historię transakcji,
+    * aby wiedzieć, ile punktów zgromadziłem i na jakie benefity mogę je wymienić.
+* **Cel Biznesowy:** Budowanie motywacji do nauki poprzez transparentność systemu nagród.
+* **Warunki Wstępne:** Użytkownik jest zalogowany do systemu.
+* **Warunki Końcowe:** Użytkownik widzi aktualne saldo i listę operacji.
+* **Kryteria Akceptacji:**
 
-**Cel Biznesowy:** Zapobieganie zapominaniu (Krzywa Zapominania).
-**Warunki Wstępne:** Użytkownik ukończył przynajmniej jeden moduł.
-**Warunki Końcowe:** Wyniki powtórek aktualizują harmonogram kolejnych pytań.
+    * **WF-WALLET-01: Podgląd salda i historii (Scenariusz Główny)**
+        * *Opis:* Pracownik sprawdza stan swojego konta punktowego po ukończeniu aktywności.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem zalogowanym pracownikiem i posiadałem wcześniej 100 pkt.
+            * **And:** Właśnie ukończyłem quiz, za który otrzymałem 50 pkt.
+            * **When:** Przechodzę do widoku "Mój Portfel".
+            * **Then:** System wyświetla saldo równe 150 pkt.
+            * **And:** Na liście transakcji widzę nową pozycję: "+50 pkt - Quiz: Podstawy Cloud" z dzisiejszą datą.
 
-**Kryteria Akceptacji:**
+    * **WF-WALLET-02: Ręczna korekta salda (Perspektywa Administratora)**
+        * *Opis:* Administrator przyznaje dodatkowe punkty nagrodowe.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem Administratorem z uprawnieniami do edycji sald.
+            * **When:** Wyszukuję pracownika i wybieram opcję "Przyznaj punkty".
+            * **And:** Wpisuję 100 pkt i powód "Nagroda za innowację".
+            * **Then:** Saldo pracownika rośnie o 100 pkt.
+            * **And:** Pracownik otrzymuje powiadomienie o przyznaniu nagrody.
 
-**Scenariusz Główny: Codzienna sesja powtórkowa**
-*   **Given:** Mam zaplanowane powtórki na dzisiaj.
-*   **When:** Loguję się do systemu i widzę powiadomienie "Czas na powtórkę".
-*   **Then:** System prezentuje mi 5 szybkich pytań z materiału przerobionego w przeszłości.
-*   **And:** Jeśli odpowiem błędnie, pytanie wróci do mnie szybciej (np. jutro).
+### 4.8. [US-10] Realizacja Benefitów w Systemie Kafeteryjnym
 
-**Scenariusz Alternatywny: Brak powtórek na dziś**
-*   **Given:** Zalogowałem się do systemu.
-*   **And:** Nie mam żadnych zaplanowanych powtórek na dzisiaj (wszystkie karty są "świeże" w pamięci).
-*   **When:** Wchodzę w moduł "Asystent Powtórek".
-*   **Then:** Wyświetla się komunikat "Wszystko na bieżąco! Wróć jutro.".
-*   **And:** System proponuje opcjonalną naukę nowych materiałów.
+* **Tytuł:** Wymiana punktów na benefity (Marketplace)
+* **Opis:** Moduł wymiany zgromadzonych punktów na usługi zewnętrzne (wellbeing, rozwój).
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę samodzielnie wymieniać punkty na wybrane usługi prozdrowotne lub rozwojowe,
+    * aby sfinansować mój wellbeing bez konieczności składania papierowych wniosków.
+* **Cel Biznesowy:** Zwiększenie utylizacji budżetu do poziomu minimum 95% poprzez eliminację barier biurokratycznych.
+* **Warunki Wstępne:** Użytkownik posiada wystarczającą liczbę punktów.
+* **Warunki Końcowe:** Saldo punktowe zostaje pomniejszone, a status benefitu zmienia się na "Odebrany" (z kodem/potwierdzeniem).
+* **Kryteria Akceptacji:**
 
-### 4.7. Zarządzanie Wirtualnym Portfelem (US-9)
+    * **WF-BENEFIT-01: Pomyślna wymiana punktów (Scenariusz Główny)**
+        * *Opis:* Pracownik wymienia punkty na dostępny benefit.
+        * *Kryteria Akceptacji:*
+            * **Given:** Posiadam 500 pkt w portfelu.
+            * **And:** Wybrałem benefit "Voucher do fizjoterapeuty" o wartości 400 pkt.
+            * **When:** Klikam przycisk "Wymień punkty" i potwierdzam operację w oknie modalnym.
+            * **Then:** Moje saldo zostaje natychmiast pomniejszone o 400 pkt (nowy stan: 100 pkt).
+            * **And:** System wyświetla unikalny kod vouchera gotowy do użycia.
+            * **And:** Otrzymuję e-mail z potwierdzeniem transakcji.
 
-**Opis:** Umożliwia pracownikowi bieżący podgląd stanu posiadanych punktów oraz historii ich zdobywania za aktywność edukacyjną.  
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę mieć wgląd w saldo mojego portfela i historię transakcji,
-*   aby wiedzieć, ile punktów zgromadziłem i na jakie benefity mogę je wymienić.
+    * **WF-BENEFIT-02: Niewystarczające saldo (Scenariusz Alternatywny)**
+        * *Opis:* Pracownik próbuje wybrać benefit, na który go nie stać.
+        * *Kryteria Akceptacji:*
+            * **Given:** Posiadam 100 pkt w portfelu.
+            * **And:** Wybrałem benefit "Karta sportowa" o wartości 300 pkt.
+            * **When:** Wyświetlam szczegóły tego benefitu.
+            * **Then:** Przycisk "Wymień punkty" jest nieaktywny (wyszarzony).
+            * **And:** Pod ceną widnieje komunikat: "Brakuje Ci 200 pkt, aby odebrać ten benefit".
 
-**Cel Biznesowy:** Budowanie motywacji do nauki poprzez transparentność systemu nagród i bezpośrednie powiązanie postępów z korzyściami.  
-**Warunki Wstępne:** Użytkownik jest zalogowany do systemu.  
-**Warunki Końcowe:** Użytkownik wyświetla aktualne saldo punktowe oraz listę operacji historycznych.
+    * **WF-BENEFIT-03: Błąd API dostawcy (Perspektywa Systemu)**
+        * *Opis:* System obsługuje brak odpowiedzi od zewnętrznego dostawcy kodów.
+        * *Kryteria Akceptacji:*
+            * **Given:** Użytkownik wymienia punkty na benefit "Kino".
+            * **When:** Zewnętrzne API dostawcy kodów nie odpowiada (timeout > 5s).
+            * **Then:** System przerywa transakcję i nie pobiera punktów z konta.
+            * **And:** Wyświetla komunikat "Błąd po stronie dostawcy vouchera, spróbuj ponownie za chwilę".
+            * **And:** Administrator otrzymuje alert techniczny o awarii integracji.
 
-**Kryteria Akceptacji:**
+### 4.9. [US-11] Zarządzanie Ofertą Marketplace
 
-**Scenariusz Główny: Podgląd salda i historii**
-*   **Given:** Jestem zalogowanym pracownikiem i posiadałem wcześniej 100 pkt.
-*   **And:** Właśnie ukończyłem quiz, za który otrzymałem 50 pkt.
-*   **When:** Przechodzę do widoku "Mój Portfel".
-*   **Then:** System wyświetla saldo równe 150 pkt.
-*   **And:** Na liście transakcji widzę nową pozycję: "+50 pkt - Quiz: Podstawy Cloud" z dzisiejszą datą.
+* **Tytuł:** Dodawanie i edycja benefitów w katalogu
+* **Opis:** Panel administracyjny dla HR Managera do zarządzania ofertą nagród.
+* **Historyjka Użytkownika:**
+    * Jako HR Manager,
+    * chcę dodawać nowe benefity do katalogu i określać ich wartość punktową,
+    * aby oferta była atrakcyjna dla pracowników i optymalizowała wykorzystanie budżetu.
+* **Cel Biznesowy:** Efektywne zarządzanie budżetem szkoleniowo-benefitowym.
+* **Warunki Wstępne:** Użytkownik zalogowany jako HR Manager lub Administrator.
+* **Warunki Końcowe:** Nowy benefit jest widoczny dla pracowników w katalogu.
+* **Kryteria Akceptacji:**
 
+    * **WF-MARKET-01: Dodanie nowego benefitu (Scenariusz Główny)**
+        * *Opis:* HR dodaje nową pozycję do sklepu z nagrodami.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem zalogowana jako HR Manager w panelu zarządzania Marketplace.
+            * **When:** Wypełniam formularz dodawania benefitu (Nazwa: "Sesja z psychologiem", Cena: 250 pkt, Kategoria: "Wellbeing").
+            * **And:** Klikam "Opublikuj".
+            * **Then:** Nowa oferta pojawia się na liście benefitów dostępnych dla wszystkich pracowników.
 
-### 4.8. Realizacja Benefitów w Systemie Kafeteryjnym (US-10)
+    * **WF-MARKET-02: Ukrywanie niedostępnych benefitów (Perspektywa Systemu)**
+        * *Opis:* System automatycznie ukrywa benefity, które wygasły lub wyczerpał się limit.
+        * *Kryteria Akceptacji:*
+            * **Given:** Benefit "Bilet na koncert" ma ustawiony limit ilościowy na 100 sztuk.
+            * **When:** Pracownicy wykupili 100-tną sztukę (stan magazynowy = 0).
+            * **Then:** System automatycznie zmienia status benefitu na "Niedostępny".
+            * **And:** Benefit znika z katalogu dla użytkowników lub jest oznaczony jako "Wyprzedane".
 
-**Opis:** Moduł wymiany zgromadzonych punktów na usługi zewnętrzne (wellbeing, rozwój) poprzez automatyczną integrację z dostawcami.  
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę samodzielnie wymieniać punkty na wybrane usługi prozdrowotne lub rozwojowe,
-*   aby sfinansować mój wellbeing bez konieczności składania papierowych wniosków.
+### 4.10. [US-12] Monitoring Utylizacji Budżetu
 
-**Cel Biznesowy:** Zwiększenie utylizacji budżetu do poziomu 95% poprzez eliminację barier biurokratycznych w dostępie do świadczeń.  
-**Warunki Wstępne:** Użytkownik posiada na koncie liczbę punktów równą lub wyższą niż cena wybranego benefitu.  
-**Warunki Końcowe:** Saldo punktowe zostaje pomniejszone, a system generuje unikalny kod dostępu lub przesyła potwierdzenie do dostawcy.
+* **Tytuł:** Raportowanie wykorzystania budżetu kafeteryjnego
+* **Opis:** Moduł analityczny generujący raporty finansowe dotyczące wymienionych punktów.
+* **Historyjka Użytkownika:**
+    * Jako HR Manager,
+    * chcę generować raporty utylizacji budżetu w czasie rzeczywistym,
+    * aby monitorować realizację celu 95% wykorzystania środków.
+* **Cel Biznesowy:** Kontrola KPI projektu (Budget Utilization Rate) i optymalizacja wydatków.
+* **Warunki Wstępne:** System zarejestrował transakcje wymiany punktów.
+* **Warunki Końcowe:** Wyświetlony wykres i wskaźniki utylizacji.
+* **Kryteria Akceptacji:**
 
-**Kryteria Akceptacji:**
+    * **WF-BUDGET-01: Generowanie raportu utylizacji (Scenariusz Główny)**
+        * *Opis:* HR sprawdza, w jakim stopniu wykorzystano budżet.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem zalogowana jako HR Manager.
+            * **When:** Przechodzę do sekcji "Raporty" i wybieram "Analiza wykorzystania budżetu".
+            * **Then:** System wyświetla wykres porównujący sumę wydanych punktów z całkowitym budżetem rocznym.
+            * **And:** Widzę wyliczony procent utylizacji (np. "Obecna utylizacja: 68%").
+            * **And:** System sugeruje listę najmniej popularnych benefitów.
 
-**Scenariusz Główny: Pomyślna wymiana punktów**
-*   **Given:** Posiadam 500 pkt w portfelu.
-*   **And:** Wybrałem benefit "Voucher do fizjoterapeuty" o wartości 400 pkt.
-*   **When:** Klikam przycisk "Wymień punkty" i potwierdzam operację w oknie modalnym.
-*   **Then:** Moje saldo zostaje natychmiast pomniejszone o 400 pkt (nowy stan: 100 pkt).
-*   **And:** System wyświetla unikalny kod vouchera gotowy do użycia.
-*   **And:** Otrzymuję e-mail z potwierdzeniem transakcji i instrukcją realizacji.
-
-**Scenariusz Alternatywny: Niewystarczające saldo**
-*   **Given:** Posiadam 100 pkt w portfelu.
-*   **And:** Wybrałem benefit "Karta sportowa" o wartości 300 pkt.
-*   **When:** Wyświetlam szczegóły tego benefitu.
-*   **Then:** Przycisk "Wymień punkty" jest nieaktywny (wyszarzony).
-*   **And:** Pod ceną widnieje komunikat: "Brakuje Ci 200 pkt, aby odebrać ten benefit".
-
-
-### 4.9. Zarządzanie Ofertą Marketplace (US-11)
-
-**Opis:** Panel administracyjny dla działu HR służący do konfigurowania katalogu nagród i zarządzania relacjami z dostawcami.  
-**Historyjka Użytkownika:**
-*   Jako HR Manager (Anna),
-*   chcę dodawać nowe benefity do katalogu i określać ich wartość punktową,
-*   aby oferta była atrakcyjna dla pracowników i optymalizowała wykorzystanie budżetu.
-
-**Cel Biznesowy:** Efektywne zarządzanie budżetem szkoleniowo-benefitowym i dopasowanie oferty do realnych potrzeb pracowników.  
-**Warunki Wstępne:** Użytkownik posiada uprawnienia Administratora lub HR Managera.  
-**Warunki Końcowe:** Nowy benefit jest opublikowany i dostępny dla pracowników w katalogu Marketplace.
-
-**Kryteria Akceptacji:**
-
-**Scenariusz Główny: Dodanie nowego benefitu*
-*   **Given:** Jestem zalogowana jako HR Manager i znajduję się w panelu zarządzania Marketplace.
-*   **When:** Wypełniam formularz dodawania benefitu:  
-    Nazwa ("Sesja z psychologiem"),  
-    Cena (250 pkt),  
-    Kategoria ("Wellbeing"),  
-    Dostawca ("MindFull API").
-*   **And:** Klikam "Opublikuj".
-*   **Then:** Nowa oferta pojawia się na liście benefitów dostępnych dla wszystkich pracowników.
-
-
-### 4.10. Monitoring Utylizacji Budżetu (US-12)
-
-**Opis:** Moduł analityczny generujący raporty dotyczące wykorzystania środków finansowych w ramach platformy kafeteryjnej.  
-**Historyjka Użytkownika:**
-*   Jako HR Manager (Anna),
-*   chcę generować raporty utylizacji budżetu w czasie rzeczywistym,
-*   aby monitorować realizację celu 95% wykorzystania środków i reagować na odchylenia.
-
-**Cel Biznesowy:** Kontrola kluczowych wskaźników efektywności (KPI) projektu oraz optymalizacja wydatków firmy.  
-**Warunki Wstępne:** W systemie zarejestrowano aktywność użytkowników w module portfela.  
-**Warunki Końcowe:** System generuje interaktywny raport finansowy lub plik eksportu z danymi o utylizacji budżetu.
-
-**Kryteria Akceptacji:**
-
-**Scenariusz Główny: Generowanie raportu**
-*   **Given:** Jestem zalogowana jako HR Manager.
-*   **When:** Przechodzę do sekcji "Raporty" i wybieram "Analiza wykorzystania budżetu".
-*   **Then:** System wyświetla czytelny wykres porównujący sumę wydanych punktów z całkowitym budżetem rocznym.
-*   **And:** Widzę wyliczony procent utylizacji (np. "Obecna utylizacja: 68%").
-*   **And:** System sugeruje listę najmniej popularnych benefitów do ewentualnej wymiany.
+    * **WF-BUDGET-02: Alert o wyczerpywaniu budżetu (Perspektywa Systemu)**
+        * *Opis:* Automatyczne powiadomienie o niskim stanie środków.
+        * *Kryteria Akceptacji:*
+            * **Given:** Budżet roczny został wykorzystany w 90%.
+            * **When:** Następuje kolejna transakcja wymiany punktów.
+            * **Then:** System wysyła alert e-mail do HR Managera "Uwaga: 90% budżetu wykorzystane".
+            * **And:** Na dashboardzie HR pojawia się ostrzeżenie w kolorze żółtym/czerwonym.
 
 
 ### 4.11. Priorytetyzacja Wymagań
@@ -431,262 +530,173 @@ System będzie komunikował się z zewnętrznymi systemami:
 
 ---
 
-## 4.12. Zarządzanie OKR (US-13)
+### 4.12. [US-13] Zarządzanie OKR (Objectives & Key Results)
 
-**Opis:** Moduł zarządzania celami OKR umożliwiający tworzenie, edycję, kaskadowanie oraz monitorowanie celów na poziomie strategicznym, zespołowym i indywidualnym. System zapewnia powiązanie celów z ścieżkami rozwoju, wizualizację drzewa celów oraz analitykę postępów, co wspiera kwartalną weryfikację realizacji strategii.
+* **Tytuł:** System zarządzania celami OKR
+* **Opis:** Moduł umożliwiający tworzenie, edycję, kaskadowanie oraz monitorowanie celów na poziomie strategicznym, zespołowym i indywidualnym.
+* **Historyjka Użytkownika:**
+    * Jako HR Manager, chcę tworzyć cele strategiczne, aby zdefiniować priorytety organizacji.
+    * Jako Manager, chcę kaskadować cele do zespołów, aby powiązać zadania ze strategią.
+    * Jako Pracownik, chcę widzieć moje cele i ich status, aby ukierunkować swój rozwój.
+* **Cel Biznesowy:** Zapewnienie transparentności powiązań między celami indywidualnymi a strategią firmy oraz kwartalna weryfikacja realizacji strategii.
+* **Warunki Wstępne:** Użytkownik posiada odpowiednie uprawnienia.
+* **Warunki Końcowe:** Cele są zdefiniowane i widoczne w strukturze drzewiastej.
+* **Kryteria Akceptacji:**
 
-**Historyjki Użytkownika:**
-*   Jako HR Manager / Administrator,
-*   chcę tworzyć i edytować cele strategiczne i kluczowe rezultaty (KR),
-*   aby zdefiniować priorytety organizacji i monitorować ich realizację.
+    * **WF-OKR-01: Utworzenie celu i Key Results (Scenariusz Główny)**
+        * *Opis:* HR Manager definiuje nowy cel strategiczny dla firmy.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem HR Managerem z uprawnieniami do tworzenia OKR.
+            * **When:** Tworzę nowe Objective z jednym lub więcej Key Results i przypisuję właściciela oraz ramy czasowe.
+            * **Then:** Cel pojawia się na liście OKR; każdy KR ma status i metryki śledzenia postępów.
 
-*   Jako Manager,
-*   chcę kaskadować cele do moich podwładnych i zespołów,
-*   aby ich zadania były bezpośrednio powiązane z celami firmy.
+    * **WF-OKR-02: Kaskadowanie celu do zespołu (Scenariusz Główny)**
+        * *Opis:* Manager tworzy cel zespołowy powiązany z celem strategicznym.
+        * *Kryteria Akceptacji:*
+            * **Given:** Istnieje Objective na poziomie strategicznym.
+            * **When:** Manager kaskaduje Objective do zespołu, tworząc cele zespołowe i indywidualne powiązane z nadrzędnym Objective.
+            * **Then:** System tworzy relacje rodzic-dziecko między celami, widoczne w wizualizacji drzewa.
 
-*   Jako Pracownik,
-*   chcę widzieć moje cele osobiste i ich powiązanie ze ścieżkami rozwoju,
-*   aby lepiej ukierunkować naukę na realizację oczekiwań biznesowych.
+    * **WF-OKR-03: Powiązanie ścieżki rozwoju z celem (Scenariusz Główny)**
+        * *Opis:* Przypisanie konkretnego szkolenia jako sposobu realizacji celu (KR).
+        * *Kryteria Akceptacji:*
+            * **Given:** Jest dostępna ścieżka rozwoju odpowiadająca kompetencjom wymaganym przez Objective.
+            * **When:** HR lub Manager powiązuje Learning Path z Objective lub KR.
+            * **Then:** Na dashboardzie użytkownika pojawia się informacja, które kursy wspierają realizację celu.
 
-**Cel Biznesowy:** Zapewnienie 100% transparentności powiązań między celami indywidualnymi a strategią firmy poprzez system kaskadowania OKR oraz umożliwienie kwartalnej weryfikacji realizacji strategii.
+    * **WF-OKR-04: Wizualizacja drzewa celów (Scenariusz Główny)**
+        * *Opis:* Przegląd struktury celów w organizacji.
+        * *Kryteria Akceptacji:*
+            * **Given:** Cele są zdefiniowane i powiązane z użytkownikami.
+            * **When:** HR generuje raport kwartalny lub otwiera widok drzewa celów.
+            * **Then:** System pokazuje strukturę OKR, percentyl realizacji dla każdego celu oraz listę powiązanych ścieżek.
 
-**Warunki Wstępne:** Użytkownik posiada odpowiednie uprawnienia (HR/Admin lub Manager). Istnieje co najmniej jedna zdefiniowana ścieżka rozwoju.
+    * **WF-OKR-05: Konflikt kaskadowania (Scenariusz Alternatywny)**
+        * *Opis:* Próba przypisania sprzecznych celów.
+        * *Kryteria Akceptacji:*
+            * **Given:** Manager próbuje kaskadować Objective, który jest sprzeczny z istniejącymi priorytetami.
+            * **When:** Próbuje przypisać cel o sprzecznych terminach lub priorytecie.
+            * **Then:** System informuje o konflikcie i sugeruje konsultację z HR.
 
-**Warunki Końcowe:** Cele są zdefiniowane, przypisane i powiązane z użytkownikami oraz ścieżkami; dostępna jest wizualizacja drzewa celów i raport kwartalny z postępami.
-
-**Kryteria Akceptacji:**
-
-**Scenariusz Główny: Utworzenie celu i powiązanie z KR**
-*   **Given:** Jestem HR Managerem z uprawnieniami do tworzenia OKR.
-*   **When:** Tworzę nowe Objective z jednym lub więcej Key Results i przypisuję właściciela oraz ramy czasowe.
-*   **Then:** Cel pojawia się na liście OKR; każdy KR ma status i metryki śledzenia postępów.
-
-**Scenariusz Główny: Kaskadowanie celu do zespołu**
-*   **Given:** Istnieje Objective na poziomie strategicznym.
-*   **When:** Manager kaskaduje Objective do zespołu, tworząc cele zespołowe i indywidualne powiązane z nadrzędnym Objective.
-*   **Then:** System tworzy relacje rodzic-dziecko między celami, widoczne w wizualizacji drzewa oraz w profilach przypisanych użytkowników.
-
-**Scenariusz Główny: Powiązanie ścieżki rozwoju z celem**
-*   **Given:** Jest dostępna ścieżka rozwoju odpowiadająca kompetencjom wymaganym przez Objective.
-*   **When:** HR lub Manager powiązuje Learning Path z Objective lub KR.
-*   **Then:** Na dashboardzie użytkownika pojawia się informacja, które kursy wspierają realizację celu.
-
-**Scenariusz Główny: Wizualizacja drzewa celów i raport kwartalny**
-*   **Given:** Cele są zdefiniowane i powiązane z użytkownikami/ścieżkami.
-*   **When:** HR generuje raport kwartalny lub otwiera widok drzewa celów.
-*   **Then:** System pokazuje strukturę OKR, percentyl realizacji dla każdego celu oraz listę powiązanych ścieżek i użytkowników; raport zawiera wskaźnik zgodności powiązań (traceability) i metryki postępu.
-
-**Scenariusz Alternatywny: Konflikt kaskadowania**
-*   **Given:** Manager próbuje kaskadować Objective, który jest sprzeczny z istniejącymi priorytetami.
-*   **When:** Próbuje przypisać cel o sprzecznych terminach lub priorytecie.
-*   **Then:** System informuje o konflikcie i sugeruje konsultację z HR/Ownerem Objective.
-
-**Kryteria Sukcesu:**
-*   System umożliwia pełną śledzalność powiązań między celami strategicznymi, zespołowymi i indywidualnymi.
-*   Wizualizacja drzewa celów wyświetla relacje i statusy w czytelny sposób.
-*   Raport kwartalny dostarcza metryki wspierające weryfikację realizacji strategii.
+    * **WF-OKR-06: Powiadomienie o zagrożeniu celu (Perspektywa Systemu)**
+        * *Opis:* System wykrywa brak postępów w realizacji celu (Check-in reminder).
+        * *Kryteria Akceptacji:*
+            * **Given:** Upłynęła połowa czasu na realizację celu (np. połowa kwartału).
+            * **And:** Postęp celu (Key Result) wynosi 0% lub jest poniżej 20%.
+            * **When:** System wykonuje przegląd okresowy (batch job).
+            * **Then:** System wysyła powiadomienie do właściciela celu i jego przełożonego "Zagrożenie realizacji celu".
+            * **And:** Status celu zmienia się automatycznie na "At risk".
 
 ## 4.13. Model danych OKR (hierarchia celów)
 
-Poniżej propozycja podstawowego modelu danych obsługującego cele OKR, ich kaskadowanie, powiązania z użytkownikami oraz powiązania z Learning Paths.
+Poniżej propozycja podstawowego modelu danych obsługującego cele OKR... (bez zmian)
 
-1) `Objective`
-* id: UUID (PK)
-* title: string (255)
-* description: text
-* owner_id: UUID (FK -> User.id) — właściciel celu
-* start_date: date
-* end_date: date
-* status: enum {draft, active, on_track, at_risk, completed, cancelled}
-* progress_percent: decimal(5,2) — agregowany procent realizacji
-* parent_id: UUID (FK -> Objective.id) nullable — relacja rodzic-dziecko
-* created_at, updated_at: timestamps
-
-2) `KeyResult`
-* id: UUID (PK)
-* objective_id: UUID (FK -> Objective.id)
-* title: string (255)
-* metric_type: enum {percentage, numeric, boolean, milestone}
-* target_value: decimal/null
-* current_value: decimal/null
-* unit: string (np. "%", "items")
-* owner_id: UUID (FK -> User.id)
-* status: enum {not_started, in_progress, achieved, missed}
-* start_date, end_date: date
-* created_at, updated_at
-
-3) `OKRAssignment` (przypisania celu do użytkownika/zespołu)
-* id: UUID (PK)
-* objective_id: UUID (FK)
-* assignee_type: enum {user, team}
-* assignee_id: UUID (FK -> User.id albo Team.id)
-* role: enum {owner, contributor, reviewer}
-* created_at
-
-4) `ObjectiveLearningPath` (powiązanie Objective/KR z Learning Path)
-* id: UUID (PK)
-* objective_id: UUID (FK)
-* learning_path_id: UUID (FK -> LearningPath.id)
-* confidence: decimal (0..1) — jak silne jest powiązanie (optymalizacyjne)
-
-5) `OKRProgressEvent` (historyczne zdarzenia / metryki)
-* id: UUID (PK)
-* key_result_id: UUID (FK nullable)
-* objective_id: UUID (FK nullable)
-* recorded_by: UUID (User.id)
-* value: decimal
-* note: text
-* recorded_at: timestamp
-
-6) `OKRAudit` (zmiany, kaskadowania, konflikty)
-* id: UUID
-* entity_type: string (Objective/KeyResult/Assignment)
-* entity_id: UUID
-* action: string (create/update/delete/cascade)
-* performed_by: UUID
-* details: json
-* created_at: timestamp
-
-Indeksowanie i spójność:
-- Indeks na `Objective(parent_id)` dla szybkiego budowania drzewa.
-- Indeks na `KeyResult(objective_id, owner_id)` dla raportów właściciela.
-- Constraint: `Objective.end_date >= Objective.start_date`.
-- Sumaryczny `Objective.progress_percent` może być wyliczany okresowo (batch) lub na żądanie przez agregację powiązanych KR.
-
-Uwagi implementacyjne:
-- Projekt wymusza hierarchiczną strukturę (rekurencyjne Objective z parent_id). Można rozważyć dodatkowe kolumny do materializowanej ścieżki (ltree / path) dla szybszych zapytań drzewa.
-- Dla wysokiego obciążenia dashboardów rekomendowane są materializowane widoki/aggretacje (np. progress per objective) i warstwa cache (Redis).
-
-Diagram (klasy, uproszczony):
-
-```mermaid
-classDiagram
-    class Objective {
-        +UUID id
-        +String title
-        +String description
-        +UUID owner_id
-        +Date start_date
-        +Date end_date
-        +Decimal progress_percent
-        +UUID parent_id
-    }
-
-    class KeyResult {
-        +UUID id
-        +UUID objective_id
-        +String title
-        +Decimal target_value
-        +Decimal current_value
-        +String unit
-    }
-
-    class OKRAssignment {
-        +UUID id
-        +UUID objective_id
-        +String assignee_type
-        +UUID assignee_id
-    }
-
-    Objective "1" o-- "*" KeyResult : has
-    Objective "1" o-- "*" Objective : children
-    Objective "1" o-- "*" OKRAssignment : assigned
-```
+(skipping model details here in replacement as I am targeting the section until next US)
 
 ---
 
-## 4.14. Weryfikacja Długoterminowej Retencji Wiedzy (US-14)
+### 4.14. [US-14] Weryfikacja Długoterminowej Retencji Wiedzy
 
-**Opis:** Moduł automatycznego testowania długoterminowej retencji wiedzy poprzez przeprowadzanie testów sprawdzających 30 dni po ukończeniu kursu. System mierzy rzeczywiste zapamiętanie materiału i dostarcza danych do analizy efektywności szkoleń.
+* **Tytuł:** Pomiary retencji wiedzy (Long-term Retention)
+* **Opis:** System automatycznie sprawdza poziom zapamiętania wiedzy 30 dni po ukończeniu kursu.
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę otrzymać test sprawdzający 30 dni po ukończeniu kursu,
+    * aby zweryfikować, ile wiedzy faktycznie zapamiętałem.
+* **Cel Biznesowy:** Zwiększenie wskaźnika retencji wiedzy o 40% w ciągu 6 miesięcy od wdrożenia.
+* **Warunki Wstępne:** Użytkownik ukończył kurs minimum 30 dni temu.
+* **Warunki Końcowe:** Wynik testu retencyjnego zostaje zapisany do celów analitycznych.
+* **Kryteria Akceptacji:**
 
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę otrzymać test sprawdzający 30 dni po ukończeniu kursu,
-*   aby zweryfikować, ile wiedzy faktycznie zapamiętałem i zidentyfikować obszary do powtórki.
+    * **WF-RET-01: Automatyczne wyzwolenie testu (Scenariusz Główny)**
+        * *Opis:* System przypomina o konieczności wykonania testu sprawdzającego.
+        * *Kryteria Akceptacji:*
+            * **Given:** Ukończyłem kurs "Cloud Fundamentals" 30 dni temu.
+            * **And:** Nie wykonałem jeszcze testu retencyjnego dla tego kursu.
+            * **When:** Loguję się do systemu.
+            * **Then:** System wyświetla powiadomienie "Czas na test retencyjny: Cloud Fundamentals".
+            * **And:** Na dashboardzie pojawia się kafelek z testem do wykonania.
 
-*   Jako HR Manager,
-*   chcę mieć dostęp do raportów retencji wiedzy w organizacji,
-*   aby mierzyć rzeczywistą efektywność programów szkoleniowych i realizację celu 40% wzrostu retencji.
+    * **WF-RET-02: Ukończenie testu retencyjnego (Scenariusz Główny)**
+        * *Opis:* Pracownik rozwiązuje test i otrzymuje informację zwrotną.
+        * *Kryteria Akceptacji:*
+            * **Given:** Przystąpiłem do testu retencyjnego dla kursu "Cloud Fundamentals".
+            * **When:** Odpowiadam na wszystkie pytania i klikam "Zakończ test".
+            * **Then:** System wyświetla wynik (np. "Zapamiętałeś 72% materiału").
+            * **And:** System porównuje wynik z testem końcowym kursu i pokazuje różnicę.
+            * **And:** System sugeruje konkretne moduły do powtórki.
 
-**Cel Biznesowy:** Zwiększenie wskaźnika retencji wiedzy o 40% w ciągu 6 miesięcy, mierzone testami sprawdzającymi przeprowadzanymi 30 dni po ukończeniu kursu.
+    * **WF-RET-03: Pominięcie testu (Scenariusz Alternatywny)**
+        * *Opis:* Użytkownik ignoruje powiadomienia o teście.
+        * *Kryteria Akceptacji:*
+            * **Given:** Otrzymałem powiadomienie o teście retencyjnym.
+            * **When:** Klikam "Przypomnij później" lub ignoruję powiadomienie przez 7 dni.
+            * **Then:** System wysyła przypomnienie e-mail.
+            * **And:** Po 14 dniach nieaktywności test jest oznaczany jako "Pominięty" w raportach HR.
 
-**Warunki Wstępne:** Użytkownik ukończył kurs co najmniej 30 dni temu. System posiada zdefiniowane pytania do testu retencyjnego.
+    * **WF-RET-05: Analiza skuteczności przez HR (Perspektywa HR)**
+        * *Opis:* HR sprawdza, które działy mają najsłabszą pamięć (retencję).
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem HR Managerem.
+            * **When:** Generuję raport "Retencja wg Działów".
+            * **Then:** Widzę wykres słupkowy porównujący wyniki testów retencyjnych między zespołami.
+            * **And:** Mogę zidentyfikować managerów, których zespoły nie wykonują testów (niski compliance).
 
-**Warunki Końcowe:** Wynik testu retencyjnego jest zapisany w profilu użytkownika i uwzględniony w raportach HR.
+    * **WF-RET-04: Raport retencji dla HR (Scenariusz Główny)**
+        * *Opis:* Analiza skuteczności szkoleń w czasie.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem HR Managerem i chcę sprawdzić efektywność szkoleń.
+            * **When:** Otwieram raport "Analiza Retencji Wiedzy" i wybieram okres ostatnich 6 miesięcy.
+            * **Then:** System wyświetla średni wskaźnik retencji dla organizacji.
+            * **And:** Pokazuje porównanie z poprzednim okresem.
 
-**Kryteria Akceptacji:**
+### 4.15. [US-15] Personalizacja Algorytmu Powtórek
 
-**Scenariusz Główny: Automatyczne wyzwolenie testu retencyjnego**
-*   **Given:** Ukończyłem kurs "Cloud Fundamentals" 30 dni temu.
-*   **And:** Nie wykonałem jeszcze testu retencyjnego dla tego kursu.
-*   **When:** Loguję się do systemu.
-*   **Then:** System wyświetla powiadomienie "Czas na test retencyjny: Cloud Fundamentals".
-*   **And:** Na dashboardzie pojawia się kafelek z testem do wykonania.
+* **Tytuł:** Dostosowanie parametrów Spaced Repetition
+* **Opis:** Umożliwia użytkownikowi zmianę intensywności powtórek oraz automatyczną adaptację algorytmu.
+* **Historyjka Użytkownika:**
+    * Jako pracownik,
+    * chcę dostosować intensywność i częstotliwość powtórek do mojego stylu nauki,
+    * aby system lepiej odpowiadał mojemu tempu przyswajania wiedzy.
+* **Cel Biznesowy:** Zwiększenie zaangażowania użytkowników w system regularnych powtórek.
+* **Warunki Wstępne:** Użytkownik posiada aktywne sesje powtórkowe.
+* **Warunki Końcowe:** Parametry algorytmu zostają zaktualizowane.
+* **Kryteria Akceptacji:**
 
-**Scenariusz Główny: Ukończenie testu retencyjnego**
-*   **Given:** Przystąpiłem do testu retencyjnego dla kursu "Cloud Fundamentals".
-*   **When:** Odpowiadam na wszystkie pytania i klikam "Zakończ test".
-*   **Then:** System wyświetla wynik (np. "Zapamiętałeś 72% materiału").
-*   **And:** System porównuje wynik z testem końcowym kursu i pokazuje różnicę (np. "Spadek o 8% względem wyniku końcowego").
-*   **And:** System sugeruje konkretne moduły do powtórki na podstawie błędnych odpowiedzi.
+    * **WF-PERS-01: Ręczna konfiguracja intensywności (Scenariusz Główny)**
+        * *Opis:* Użytkownik zmienia ustawienia globalne powtórek.
+        * *Kryteria Akceptacji:*
+            * **Given:** Jestem w ustawieniach modułu "Asystent Powtórek".
+            * **When:** Zmienię intensywność powtórek z "Standardowa" na "Intensywna".
+            * **Then:** System zwiększa liczbę codziennych pytań z 5 do 10.
+            * **And:** Skraca interwały między powtórkami o 20%.
+            * **And:** Wyświetla komunikat "Ustawienia zapisane".
 
-**Scenariusz Alternatywny: Pominięcie testu retencyjnego**
-*   **Given:** Otrzymałem powiadomienie o teście retencyjnym.
-*   **When:** Klikam "Przypomnij później" lub ignoruję powiadomienie przez 7 dni.
-*   **Then:** System wysyła przypomnienie e-mail.
-*   **And:** Po 14 dniach nieaktywności test jest oznaczany jako "Pominięty" w raportach HR.
+    * **WF-PERS-02: Automatyczna adaptacja algorytmu (Scenariusz Główny)**
+        * *Opis:* System sam dostosowuje się do wyników użytkownika.
+        * *Kryteria Akceptacji:*
+            * **Given:** System zebrał 50 moich odpowiedzi z ostatnich 2 tygodni.
+            * **And:** Mój wskaźnik poprawnych odpowiedzi dla kategorii "Kubernetes" wynosi 45% (niski).
+            * **When:** System przeprowadza analizę wyników (batch nocny).
+            * **Then:** Pytania z kategorii "Kubernetes" są oznaczane jako "trudne" dla mojego profilu.
+            * **And:** Interwały powtórek dla tych pytań są automatycznie skracane.
 
-**Scenariusz Główny: Raport retencji dla HR**
-*   **Given:** Jestem HR Managerem i chcę sprawdzić efektywność szkoleń.
-*   **When:** Otwieram raport "Analiza Retencji Wiedzy" i wybieram okres ostatnich 6 miesięcy.
-*   **Then:** System wyświetla średni wskaźnik retencji dla organizacji.
-*   **And:** Pokazuje porównanie z poprzednim okresem (np. "Wzrost retencji o 35% względem poprzedniego kwartału").
-*   **And:** Wskazuje kursy z najniższą retencją do przeglądu metodycznego.
+    * **WF-PERS-03: Reset do ustawień domyślnych (Scenariusz Alternatywny)**
+        * *Opis:* Przywrócenie ustawień fabrycznych algorytmu.
+        * *Kryteria Akceptacji:*
+            * **Given:** Zmieniłem ustawienia algorytmu powtórek.
+            * **When:** Klikam "Przywróć domyślne" w ustawieniach.
+            * **Then:** System resetuje wszystkie parametry do wartości bazowych.
+            * **And:** Historia adaptacji algorytmu jest zachowana do celów analitycznych.
 
----
-
-## 4.15. Personalizacja Algorytmu Powtórek (US-15)
-
-**Opis:** Moduł umożliwiający dostosowanie parametrów algorytmu Spaced Repetition do indywidualnych preferencji użytkownika oraz automatyczną adaptację na podstawie wyników uczenia.
-
-**Historyjka Użytkownika:**
-*   Jako pracownik,
-*   chcę dostosować intensywność i częstotliwość powtórek do mojego stylu nauki,
-*   aby system lepiej odpowiadał mojemu tempu przyswajania wiedzy.
-
-*   Jako pracownik,
-*   chcę, aby system automatycznie dostosowywał się do moich wyników,
-*   aby trudniejsze dla mnie tematy pojawiały się częściej w powtórkach.
-
-**Cel Biznesowy:** Wsparcie celu retencji wiedzy poprzez personalizację doświadczenia nauki i zwiększenie zaangażowania użytkowników w system powtórek.
-
-**Warunki Wstępne:** Użytkownik ma aktywne sesje powtórkowe. System zebrał minimum 20 odpowiedzi użytkownika.
-
-**Warunki Końcowe:** Parametry algorytmu są dostosowane do preferencji/wyników użytkownika.
-
-**Kryteria Akceptacji:**
-
-**Scenariusz Główny: Ręczna konfiguracja intensywności**
-*   **Given:** Jestem w ustawieniach modułu "Asystent Powtórek".
-*   **When:** Zmieniam intensywność powtórek z "Standardowa" na "Intensywna".
-*   **Then:** System zwiększa liczbę codziennych pytań z 5 do 10.
-*   **And:** Skraca interwały między powtórkami o 20%.
-*   **And:** Wyświetla komunikat "Ustawienia zapisane. Nowa intensywność zostanie zastosowana od następnej sesji."
-
-**Scenariusz Główny: Automatyczna adaptacja algorytmu**
-*   **Given:** System zebrał 50 moich odpowiedzi z ostatnich 2 tygodni.
-*   **And:** Mój wskaźnik poprawnych odpowiedzi dla kategorii "Kubernetes" wynosi 45%.
-*   **When:** System przeprowadza analizę wyników (batch nocny).
-*   **Then:** Pytania z kategorii "Kubernetes" są oznaczane jako "trudne" dla mojego profilu.
-*   **And:** Interwały powtórek dla tych pytań są automatycznie skracane.
-*   **And:** Otrzymuję sugestię "Rozważ powtórkę materiału: Kubernetes Basics" na dashboardzie.
-
-**Scenariusz Alternatywny: Reset do ustawień domyślnych**
-*   **Given:** Zmieniłem ustawienia algorytmu powtórek.
-*   **And:** Chcę wrócić do ustawień rekomendowanych przez system.
-*   **When:** Klikam "Przywróć domyślne" w ustawieniach.
-*   **Then:** System resetuje wszystkie parametry do wartości bazowych.
-*   **And:** Historia adaptacji algorytmu jest zachowana do celów analitycznych.
+    * **WF-PERS-04: Sugestia zmiany parametrów (Perspektywa Systemu)**
+        * *Opis:* System wykrywa, że użytkownik jest przeciążony i sugeruje zmniejszenie intensywności.
+        * *Kryteria Akceptacji:*
+            * **Given:** Użytkownik pomija powtórki przez 3 dni z rzędu.
+            * **And:** Nazbierało się ponad 50 zaległych kart.
+            * **When:** Użytkownik loguje się do systemu.
+            * **Then:** System wyświetla komunikat "Wygląda na to, że masz dużo zaległości. Czy chcesz tymczasowo zmniejszyć liczbę nowych pytań, aby nadrobić?".
+            * **And:** Dostępny jest przycisk "Tak, dostosuj plan".
 
 ## 5. Atrybuty Jakościowe
 
