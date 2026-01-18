@@ -405,9 +405,11 @@ System będzie komunikował się z zewnętrznymi systemami:
 | US-11 | Zarządzanie Ofertą Marketplace | **Should Have** |
 | US-12 | Monitoring Utylizacji Budżetu | **Should Have** |
 | US-13 | Zarządzanie OKR (Objectives & Key Results) | **Must Have** |
+| US-14 | Weryfikacja Długoterminowej Retencji Wiedzy | **Should Have** |
+| US-15 | Personalizacja Algorytmu Powtórek | **Could Have** |
 
 ---
- 
+
 ## 4.12. Zarządzanie OKR (US-13)
 
 **Opis:** Moduł zarządzania celami OKR umożliwiający tworzenie, edycję, kaskadowanie oraz monitorowanie celów na poziomie strategicznym, zespołowym i indywidualnym. System zapewnia powiązanie celów z ścieżkami rozwoju, wizualizację drzewa celów oraz analitykę postępów, co wspiera kwartalną weryfikację realizacji strategii.
@@ -569,6 +571,101 @@ classDiagram
     Objective "1" o-- "*" Objective : children
     Objective "1" o-- "*" OKRAssignment : assigned
 ```
+
+---
+
+## 4.14. Weryfikacja Długoterminowej Retencji Wiedzy (US-14)
+
+**Opis:** Moduł automatycznego testowania długoterminowej retencji wiedzy poprzez przeprowadzanie testów sprawdzających 30 dni po ukończeniu kursu. System mierzy rzeczywiste zapamiętanie materiału i dostarcza danych do analizy efektywności szkoleń.
+
+**Historyjka Użytkownika:**
+*   Jako pracownik,
+*   chcę otrzymać test sprawdzający 30 dni po ukończeniu kursu,
+*   aby zweryfikować, ile wiedzy faktycznie zapamiętałem i zidentyfikować obszary do powtórki.
+
+*   Jako HR Manager,
+*   chcę mieć dostęp do raportów retencji wiedzy w organizacji,
+*   aby mierzyć rzeczywistą efektywność programów szkoleniowych i realizację celu 40% wzrostu retencji.
+
+**Cel Biznesowy:** Zwiększenie wskaźnika retencji wiedzy o 40% w ciągu 6 miesięcy, mierzone testami sprawdzającymi przeprowadzanymi 30 dni po ukończeniu kursu.
+
+**Warunki Wstępne:** Użytkownik ukończył kurs co najmniej 30 dni temu. System posiada zdefiniowane pytania do testu retencyjnego.
+
+**Warunki Końcowe:** Wynik testu retencyjnego jest zapisany w profilu użytkownika i uwzględniony w raportach HR.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Automatyczne wyzwolenie testu retencyjnego**
+*   **Given:** Ukończyłem kurs "Cloud Fundamentals" 30 dni temu.
+*   **And:** Nie wykonałem jeszcze testu retencyjnego dla tego kursu.
+*   **When:** Loguję się do systemu.
+*   **Then:** System wyświetla powiadomienie "Czas na test retencyjny: Cloud Fundamentals".
+*   **And:** Na dashboardzie pojawia się kafelek z testem do wykonania.
+
+**Scenariusz Główny: Ukończenie testu retencyjnego**
+*   **Given:** Przystąpiłem do testu retencyjnego dla kursu "Cloud Fundamentals".
+*   **When:** Odpowiadam na wszystkie pytania i klikam "Zakończ test".
+*   **Then:** System wyświetla wynik (np. "Zapamiętałeś 72% materiału").
+*   **And:** System porównuje wynik z testem końcowym kursu i pokazuje różnicę (np. "Spadek o 8% względem wyniku końcowego").
+*   **And:** System sugeruje konkretne moduły do powtórki na podstawie błędnych odpowiedzi.
+
+**Scenariusz Alternatywny: Pominięcie testu retencyjnego**
+*   **Given:** Otrzymałem powiadomienie o teście retencyjnym.
+*   **When:** Klikam "Przypomnij później" lub ignoruję powiadomienie przez 7 dni.
+*   **Then:** System wysyła przypomnienie e-mail.
+*   **And:** Po 14 dniach nieaktywności test jest oznaczany jako "Pominięty" w raportach HR.
+
+**Scenariusz Główny: Raport retencji dla HR**
+*   **Given:** Jestem HR Managerem i chcę sprawdzić efektywność szkoleń.
+*   **When:** Otwieram raport "Analiza Retencji Wiedzy" i wybieram okres ostatnich 6 miesięcy.
+*   **Then:** System wyświetla średni wskaźnik retencji dla organizacji.
+*   **And:** Pokazuje porównanie z poprzednim okresem (np. "Wzrost retencji o 35% względem poprzedniego kwartału").
+*   **And:** Wskazuje kursy z najniższą retencją do przeglądu metodycznego.
+
+---
+
+## 4.15. Personalizacja Algorytmu Powtórek (US-15)
+
+**Opis:** Moduł umożliwiający dostosowanie parametrów algorytmu Spaced Repetition do indywidualnych preferencji użytkownika oraz automatyczną adaptację na podstawie wyników uczenia.
+
+**Historyjka Użytkownika:**
+*   Jako pracownik,
+*   chcę dostosować intensywność i częstotliwość powtórek do mojego stylu nauki,
+*   aby system lepiej odpowiadał mojemu tempu przyswajania wiedzy.
+
+*   Jako pracownik,
+*   chcę, aby system automatycznie dostosowywał się do moich wyników,
+*   aby trudniejsze dla mnie tematy pojawiały się częściej w powtórkach.
+
+**Cel Biznesowy:** Wsparcie celu retencji wiedzy poprzez personalizację doświadczenia nauki i zwiększenie zaangażowania użytkowników w system powtórek.
+
+**Warunki Wstępne:** Użytkownik ma aktywne sesje powtórkowe. System zebrał minimum 20 odpowiedzi użytkownika.
+
+**Warunki Końcowe:** Parametry algorytmu są dostosowane do preferencji/wyników użytkownika.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Ręczna konfiguracja intensywności**
+*   **Given:** Jestem w ustawieniach modułu "Asystent Powtórek".
+*   **When:** Zmieniam intensywność powtórek z "Standardowa" na "Intensywna".
+*   **Then:** System zwiększa liczbę codziennych pytań z 5 do 10.
+*   **And:** Skraca interwały między powtórkami o 20%.
+*   **And:** Wyświetla komunikat "Ustawienia zapisane. Nowa intensywność zostanie zastosowana od następnej sesji."
+
+**Scenariusz Główny: Automatyczna adaptacja algorytmu**
+*   **Given:** System zebrał 50 moich odpowiedzi z ostatnich 2 tygodni.
+*   **And:** Mój wskaźnik poprawnych odpowiedzi dla kategorii "Kubernetes" wynosi 45%.
+*   **When:** System przeprowadza analizę wyników (batch nocny).
+*   **Then:** Pytania z kategorii "Kubernetes" są oznaczane jako "trudne" dla mojego profilu.
+*   **And:** Interwały powtórek dla tych pytań są automatycznie skracane.
+*   **And:** Otrzymuję sugestię "Rozważ powtórkę materiału: Kubernetes Basics" na dashboardzie.
+
+**Scenariusz Alternatywny: Reset do ustawień domyślnych**
+*   **Given:** Zmieniłem ustawienia algorytmu powtórek.
+*   **And:** Chcę wrócić do ustawień rekomendowanych przez system.
+*   **When:** Klikam "Przywróć domyślne" w ustawieniach.
+*   **Then:** System resetuje wszystkie parametry do wartości bazowych.
+*   **And:** Historia adaptacji algorytmu jest zachowana do celów analitycznych.
 
 ## 5. Atrybuty Jakościowe
 
