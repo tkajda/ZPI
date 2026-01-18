@@ -21,7 +21,7 @@ Implementacja interaktywnego odtwarzacza wideo, który zatrzymuje się w zdefini
 
 **Refinement:**
 - Wybór biblioteki wideo (np. Video.js).
-- Format zapisu markerów czasowych w bazie (JSON).",High,8,,1
+- Format zapisu markerów czasowych w bazie (JSON).",High,8,100,1
 "US-1: Przeglądanie Katalogu Kursów",Story,"*Jako pracownik, chcę przeglądać katalog dostępnych ścieżek rozwoju, abym mógł wybrać te zgodne z moimi zainteresowaniami.*
 
 **Opis:**
@@ -105,3 +105,10 @@ Panel administracyjny (CRUD) dla encji Reward, dostępny tylko dla roli HR.
    - **When:** Dodaję nową nagrodę ""Wejściówka na konferencję"" i ustalam cenę na 2500 pkt.
    - **Then:** Nagroda pojawia się w katalogu widocznym dla pracowników.
    - **And:** Mogę edytować jej dostępność (np. ukryć, gdy pula się wyczerpie).",Low,5,,3
+"[POC] Inicjalizacja środowiska (Angular)",Sub-task,"Utworzenie projektu Angular Standalone, konfiguracja TailwindCSS.",Medium,2,,100
+"[POC] Mock Data (JSON)",Sub-task,"Przygotowanie pliku assets/video-data.json z pytaniami i znacznikami czasu.",Medium,3,,100
+"[POC] VideoPlayer Component",Sub-task,"Implementacja wrappera HTML5 Video i obsługi zdarzeń timeupdate oraz pause.",High,8,,100
+"[POC] Active Recall Logic",Sub-task,"Mechanizm zatrzymywania wideo na markerach czasowych z JSON.",High,8,,100
+"[POC] Question Overlay",Sub-task,"Modal wyświetlający pytanie i blokujący interfejs do czasu odpowiedzi.",High,5,,100
+"[POC] Walidacja odpowiedzi",Sub-task,"Logika sprawdzania odpowiedzi (poprawna/błędna) i wznawiania wideo.",Medium,3,,100
+"[POC] Weryfikacja scenariusza",Sub-task,"Przeprowadzenie testów manualnych wg scenariusza WF-VIDEO-01.",Medium,3,,100
