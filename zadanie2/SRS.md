@@ -14,9 +14,12 @@ Celem niniejszego dokumentu jest zdefiniowanie wymagań funkcjonalnych i niefunk
 ### 1.2. Wizja, Zakres i Cele Produktu
 **Wizja:**
 Stworzenie inteligentnej platformy rozwojowo-benefitowej LMS (Learning Management System), która przekształca organizację w środowisko ciągłego uczenia się ("Learning Organization"), gdzie każdy pracownik ma dostęp do spersonalizowanej ścieżki rozwoju (Learning Path) bezpośrednio powiązanej z celami biznesowymi firmy oraz elastycznym systemem nagród.
+Każda ścieżka rozwoju będzie bezpośrednio powiązana z celami firmy poprzez mechanizm OKR (Objectives and Key Results). System umożliwi kaskadowanie celów od poziomu strategicznego do celów indywidualnych, wizualizację drzewa celów oraz kwartalną weryfikację realizacji strategii.
 
 **Zakres:**
 System będzie umożliwiał zarządzanie ścieżkami rozwoju, przydzielanie kursów, weryfikację wiedzy poprzez quizy, raportowanie postępów oraz obsługę wirtualnego portfela punktowego. Kluczowym elementem jest platforma kafeteryjna, zintegrowana z dostawcami usług zewnętrznych, umożliwiająca wymianę punktów na benefity rozwojowe i prozdrowotne.
+
+System będzie również wspierał definiowanie, kaskadowanie i monitorowanie celów OKR, wymuszając hierarchiczną strukturę danych, zapewniając mechanizmy wizualizacji drzewa celów oraz analitykę postępów powiązaną z celami biznesowymi.
 
 **Kryteria Akceptacji (KPIs):**
 *   **Upskilling:** Przeszkolenie 60% kadry technicznej z nowych technologii w ciągu 12 miesięcy.
@@ -24,6 +27,8 @@ System będzie umożliwiał zarządzanie ścieżkami rozwoju, przydzielanie kurs
 *   **Zaangażowanie:** Wskaźnik ukończenia kursów na poziomie > 85%.
 *   **Optymalizacja Budżetu:** zwiększenie utylizacji budżetu szkoleniowo-benefitowego do 95% (z obecnych 60%) w ciągu 12 miesięcy poprzez wdrożenie platformy kafeteryjnej.
 
+**Cele Biznesowe (OKR):**
+*   **Zarządzanie przez cele (OKR):** Zapewnienie 100% transparentności powiązań między celami indywidualnymi a strategią firmy w ciągu 3 miesięcy, poprzez system kaskadowania celów OKR, co pozwoli na kwartalną weryfikację realizacji strategii. (Wymusza hierarchiczną strukturę danych, wizualizację drzewa celów i analitykę postępów.)
 
 **Poza Zakresem:**
 System nie będzie obsługiwał płatności za kursy (wszystkie materiały są wewnętrzne lub opłacone ryczałtem) ani rekrutacji nowych pracowników.
@@ -399,39 +404,212 @@ System będzie komunikował się z zewnętrznymi systemami:
 | US-7 | Asystent Powtórek | **Should Have** |
 | US-11 | Zarządzanie Ofertą Marketplace | **Should Have** |
 | US-12 | Monitoring Utylizacji Budżetu | **Should Have** |
+| US-13 | Zarządzanie OKR (Objectives & Key Results) | **Must Have** |
 
 ---
+ 
+## 4.12. Zarządzanie OKR (US-13)
+
+**Opis:** Moduł zarządzania celami OKR umożliwiający tworzenie, edycję, kaskadowanie oraz monitorowanie celów na poziomie strategicznym, zespołowym i indywidualnym. System zapewnia powiązanie celów z ścieżkami rozwoju, wizualizację drzewa celów oraz analitykę postępów, co wspiera kwartalną weryfikację realizacji strategii.
+
+**Historyjki Użytkownika:**
+*   Jako HR Manager / Administrator,
+*   chcę tworzyć i edytować cele strategiczne i kluczowe rezultaty (KR),
+*   aby zdefiniować priorytety organizacji i monitorować ich realizację.
+
+*   Jako Manager,
+*   chcę kaskadować cele do moich podwładnych i zespołów,
+*   aby ich zadania były bezpośrednio powiązane z celami firmy.
+
+*   Jako Pracownik,
+*   chcę widzieć moje cele osobiste i ich powiązanie ze ścieżkami rozwoju,
+*   aby lepiej ukierunkować naukę na realizację oczekiwań biznesowych.
+
+**Cel Biznesowy:** Zapewnienie 100% transparentności powiązań między celami indywidualnymi a strategią firmy poprzez system kaskadowania OKR oraz umożliwienie kwartalnej weryfikacji realizacji strategii.
+
+**Warunki Wstępne:** Użytkownik posiada odpowiednie uprawnienia (HR/Admin lub Manager). Istnieje co najmniej jedna zdefiniowana ścieżka rozwoju.
+
+**Warunki Końcowe:** Cele są zdefiniowane, przypisane i powiązane z użytkownikami oraz ścieżkami; dostępna jest wizualizacja drzewa celów i raport kwartalny z postępami.
+
+**Kryteria Akceptacji:**
+
+**Scenariusz Główny: Utworzenie celu i powiązanie z KR**
+*   **Given:** Jestem HR Managerem z uprawnieniami do tworzenia OKR.
+*   **When:** Tworzę nowe Objective z jednym lub więcej Key Results i przypisuję właściciela oraz ramy czasowe.
+*   **Then:** Cel pojawia się na liście OKR; każdy KR ma status i metryki śledzenia postępów.
+
+**Scenariusz Główny: Kaskadowanie celu do zespołu**
+*   **Given:** Istnieje Objective na poziomie strategicznym.
+*   **When:** Manager kaskaduje Objective do zespołu, tworząc cele zespołowe i indywidualne powiązane z nadrzędnym Objective.
+*   **Then:** System tworzy relacje rodzic-dziecko między celami, widoczne w wizualizacji drzewa oraz w profilach przypisanych użytkowników.
+
+**Scenariusz Główny: Powiązanie ścieżki rozwoju z celem**
+*   **Given:** Jest dostępna ścieżka rozwoju odpowiadająca kompetencjom wymaganym przez Objective.
+*   **When:** HR lub Manager powiązuje Learning Path z Objective lub KR.
+*   **Then:** Na dashboardzie użytkownika pojawia się informacja, które kursy wspierają realizację celu.
+
+**Scenariusz Główny: Wizualizacja drzewa celów i raport kwartalny**
+*   **Given:** Cele są zdefiniowane i powiązane z użytkownikami/ścieżkami.
+*   **When:** HR generuje raport kwartalny lub otwiera widok drzewa celów.
+*   **Then:** System pokazuje strukturę OKR, percentyl realizacji dla każdego celu oraz listę powiązanych ścieżek i użytkowników; raport zawiera wskaźnik zgodności powiązań (traceability) i metryki postępu.
+
+**Scenariusz Alternatywny: Konflikt kaskadowania**
+*   **Given:** Manager próbuje kaskadować Objective, który jest sprzeczny z istniejącymi priorytetami.
+*   **When:** Próbuje przypisać cel o sprzecznych terminach lub priorytecie.
+*   **Then:** System informuje o konflikcie i sugeruje konsultację z HR/Ownerem Objective.
+
+**Kryteria Sukcesu:**
+*   System umożliwia pełną śledzalność powiązań między celami strategicznymi, zespołowymi i indywidualnymi.
+*   Wizualizacja drzewa celów wyświetla relacje i statusy w czytelny sposób.
+*   Raport kwartalny dostarcza metryki wspierające weryfikację realizacji strategii.
+
+## 4.13. Model danych OKR (hierarchia celów)
+
+Poniżej propozycja podstawowego modelu danych obsługującego cele OKR, ich kaskadowanie, powiązania z użytkownikami oraz powiązania z Learning Paths.
+
+1) `Objective`
+* id: UUID (PK)
+* title: string (255)
+* description: text
+* owner_id: UUID (FK -> User.id) — właściciel celu
+* start_date: date
+* end_date: date
+* status: enum {draft, active, on_track, at_risk, completed, cancelled}
+* progress_percent: decimal(5,2) — agregowany procent realizacji
+* parent_id: UUID (FK -> Objective.id) nullable — relacja rodzic-dziecko
+* created_at, updated_at: timestamps
+
+2) `KeyResult`
+* id: UUID (PK)
+* objective_id: UUID (FK -> Objective.id)
+* title: string (255)
+* metric_type: enum {percentage, numeric, boolean, milestone}
+* target_value: decimal/null
+* current_value: decimal/null
+* unit: string (np. "%", "items")
+* owner_id: UUID (FK -> User.id)
+* status: enum {not_started, in_progress, achieved, missed}
+* start_date, end_date: date
+* created_at, updated_at
+
+3) `OKRAssignment` (przypisania celu do użytkownika/zespołu)
+* id: UUID (PK)
+* objective_id: UUID (FK)
+* assignee_type: enum {user, team}
+* assignee_id: UUID (FK -> User.id albo Team.id)
+* role: enum {owner, contributor, reviewer}
+* created_at
+
+4) `ObjectiveLearningPath` (powiązanie Objective/KR z Learning Path)
+* id: UUID (PK)
+* objective_id: UUID (FK)
+* learning_path_id: UUID (FK -> LearningPath.id)
+* confidence: decimal (0..1) — jak silne jest powiązanie (optymalizacyjne)
+
+5) `OKRProgressEvent` (historyczne zdarzenia / metryki)
+* id: UUID (PK)
+* key_result_id: UUID (FK nullable)
+* objective_id: UUID (FK nullable)
+* recorded_by: UUID (User.id)
+* value: decimal
+* note: text
+* recorded_at: timestamp
+
+6) `OKRAudit` (zmiany, kaskadowania, konflikty)
+* id: UUID
+* entity_type: string (Objective/KeyResult/Assignment)
+* entity_id: UUID
+* action: string (create/update/delete/cascade)
+* performed_by: UUID
+* details: json
+* created_at: timestamp
+
+Indeksowanie i spójność:
+- Indeks na `Objective(parent_id)` dla szybkiego budowania drzewa.
+- Indeks na `KeyResult(objective_id, owner_id)` dla raportów właściciela.
+- Constraint: `Objective.end_date >= Objective.start_date`.
+- Sumaryczny `Objective.progress_percent` może być wyliczany okresowo (batch) lub na żądanie przez agregację powiązanych KR.
+
+Uwagi implementacyjne:
+- Projekt wymusza hierarchiczną strukturę (rekurencyjne Objective z parent_id). Można rozważyć dodatkowe kolumny do materializowanej ścieżki (ltree / path) dla szybszych zapytań drzewa.
+- Dla wysokiego obciążenia dashboardów rekomendowane są materializowane widoki/aggretacje (np. progress per objective) i warstwa cache (Redis).
+
+Diagram (klasy, uproszczony):
+
+```mermaid
+classDiagram
+    class Objective {
+        +UUID id
+        +String title
+        +String description
+        +UUID owner_id
+        +Date start_date
+        +Date end_date
+        +Decimal progress_percent
+        +UUID parent_id
+    }
+
+    class KeyResult {
+        +UUID id
+        +UUID objective_id
+        +String title
+        +Decimal target_value
+        +Decimal current_value
+        +String unit
+    }
+
+    class OKRAssignment {
+        +UUID id
+        +UUID objective_id
+        +String assignee_type
+        +UUID assignee_id
+    }
+
+    Objective "1" o-- "*" KeyResult : has
+    Objective "1" o-- "*" Objective : children
+    Objective "1" o-- "*" OKRAssignment : assigned
+```
 
 ## 5. Atrybuty Jakościowe
 
 ### 5.1. Jakość wykonania
 
 *   **Wydajność (Performance):**
-    *   **WNF-WYD-01:** Czas ładowania strony głównej katalogu nie może przekroczyć 1.5 sekundy przy 200 jednoczesnych użytkownikach.
-    *   **WNF-WYD-02:** Buforowanie wideo musi rozpoczynać się w ciągu 2 sekund od kliknięcia "Odtwórz". 
-    *   **WNF-WYD-03:** Czas odpowiedzi integracji z API zewnętrznego dostawcy benefitów (np. generowanie kodu vouchera) nie może przekroczyć 2.0 sekund w 95% przypadków przy obciążeniu do 50 zapytań na sekundę.
-    *   **WNF-WYD-04:** Operacja odjęcia punktów z wirtualnego portfela oraz zapisania transakcji w bazie danych musi zostać wykonana w czasie poniżej 500 ms.
-* **Dostępność (Availability):**
-    *   **WNF-NIEZ-01:** Dostępność systemu musi wynosić 99.8% w skali roku (SLA), z wyłączeniem planowanych okien serwisowych w godzinach nocnych (02:00-04:00).
-    *   **WNF-NIEZ-02:** Moduł Marketplace oraz wgląd w saldo portfela muszą być dostępne w trybie 24/7 z minimalnym wskaźnikiem sprawności na poziomie 99.9% w skali miesiąca.
-* **Bezpieczeństwo (Security):**
-    *   **WNF-BEZ-01:** Wszystkie hasła użytkowników muszą być hashowane z użyciem algorytmu bcrypt z solą.
-    *   **WNF-BEZ-02:** Sesja użytkownika wygasa automatycznie po 30 minutach bezczynności.
-    *   **WNF-BEZ-03:** Dostęp do panelu HR musi być zabezpieczony uwierzytelnianiem wieloskładnikowym (MFA).
-    *   **WNF-BEZ-04:** Każda zmiana salda w portfelu (przyznanie/wydanie punktów) musi być logowana w niezmiennym dzienniku zdarzeń (Audit Trail), zawierającym: unikalne ID transakcji, ID użytkownika, znacznik czasu (z dokładnością do ms) oraz sumę kontrolną operacji.
-    *   **WNF-BEZ-05:** Dane o wyborach benefitów prozdrowotnych (np. wsparcie psychologiczne) muszą być anonimizowane przed udostępnieniem w raportach ogólnych dla HR (zgodność z RODO i ochroną prywatności pracownika).
-* **Skalowalność (Scalability):**
-    *   **WNF-SKAL-01:** Architektura systemu musi pozwalać na horyzontalne skalowanie w celu obsłużenia wzrostu obciążenia do 5000 jednoczesnych sesji.
-    *   **WNF-SKAL-02:** Architektura portfela musi pozwalać na obsługę gwałtownego wzrostu liczby transakcji (do 150 operacji na sekundę) w okresach "peak" (np. po przyznaniu premii kwartalnych w punktach).
+    *   **WNF-WYD-01:** Czas ładowania strony głównej katalogu nie może przekroczyć 1.5 sekundy przy 200 jednoczesnych użytkownikach (mierzone medianą z 1-minutowych okien pomiarowych).
+    *   **WNF-WYD-02:** Buforowanie wideo musi rozpocząć się w ciągu 2 sekund od kliknięcia "Odtwórz" w 95% przypadków dla połączeń o przepustowości >= 5 Mbps.
+    *   **WNF-WYD-03:** Czas odpowiedzi integracji z API zewnętrznego dostawcy (np. generowanie kodu vouchera) nie może przekroczyć 2.0 sekund w 95% zapytań przy obciążeniu do 50 zapytań na sekundę.
+    *   **WNF-WYD-04:** Operacja zapisu transakcji w portfelu (debet/kredyt) powinna zakończyć się w czasie <= 500 ms w 99% przypadków.
+
+*   **Dostępność (Availability):**
+    *   **WNF-NIEZ-01:** Całkowita dostępność systemu musi wynosić >= 99.8% w skali roku (SLA), z wyłączeniem zaplanowanych okien serwisowych.
+    *   **WNF-NIEZ-02:** Krytyczne moduły (Marketplace, Portfel) muszą być dostępne >= 99.9% w skali miesiąca.
+    *   **WNF-NIEZ-03:** Kopie zapasowe: dopuszczalna utrata danych (RPO) <= 1 godzina; czas odtworzenia systemu (RTO) <= 4 godziny.
+
+*   **Bezpieczeństwo (Security):**
+    *   **WNF-BEZ-01:** Hasła muszą być hashowane algorytmem `bcrypt` z solą; parametry cost >= 12.
+    *   **WNF-BEZ-02:** Sesje użytkowników wygasają po 30 minutach nieaktywności; odświeżenie tokenu wymaga ponownej walidacji MFA dla krytycznych operacji.
+    *   **WNF-BEZ-03:** Dostęp do panelu HR wymaga uwierzytelniania wieloskładnikowego (MFA) i audytowania wszystkich operacji administracyjnych.
+    *   **WNF-BEZ-04:** Każda operacja zmiany salda w portfelu musi być zapisana w niezmiennym dzienniku audytu zawierającym: ID transakcji, ID użytkownika, timestamp (ms), typ operacji i sumę kontrolną; logi audytu przechowywane minimum 2 lata.
+    *   **WNF-BEZ-05:** Dane w raportach agregowanych muszą być anonimizowane; dostęp do surowych danych PII ograniczony do ról HR/Admin i rejestrowany w logach dostępu.
+
+*   **Skalowalność (Scalability):**
+    *   **WNF-SKAL-01:** System musi być horyzontalnie skalowalny i obsługiwać do 5000 jednoczesnych sesji przy zachowaniu WNF-WYD-01.
+    *   **WNF-SKAL-02:** Warstwa transakcyjna portfela musi obsłużyć do 150 operacji/s przez 10 minut (peak) z sukcesem >= 99% bez utraty spójności.
 
 ### 5.2. Jakość projektu
 
 *   **Modyfikowalność (Modifiability):**
-    *   **WNF-ROZ-01:** System musi umożliwiać dodanie nowego typu pytania w module Quizu bez konieczności modyfikacji struktury bazy danych.
-    *   **WNF-ROZ-02:** Architektura systemu musi umożliwiać dodanie nowej integracji z dostawcą zewnętrznym (nowe API benefitowe) wyłącznie poprzez implementację dedykowanego adaptera, bez modyfikacji kodu bazowego (Core).
-* **Przenośność (Portability):**
-    *   **WNF-PRZEN-01:** Aplikacja (Frontend, Backend, Baza) musi być w pełni konteneryzowalna i uruchamialna za pomocą `docker-compose up`.
-    *   **WNF-PRZEN-02:** Wszystkie klucze API, URL-e punktów końcowych oraz certyfikaty dostawców muszą być zarządzane przez zmienne środowiskowe, umożliwiając zmianę dostawcy bez ponownego wdrażania (deploy) aplikacji.
+    *   **WNF-ROZ-01:** Możliwość dodania nowego typu pytania w module Quiz bez zmiany schematu bazy danych lub przestoju systemu; walidacja: dodanie i wdrożenie nowego typu nie wymaga migracji bazy danych w > 95% przypadków.
+    *   **WNF-ROZ-02:** Nowa integracja z dostawcą zewnętrznym musi być możliwa poprzez implementację adaptera (plugin) bez modyfikacji kodu Core; integracja powinna przejść testy integracyjne automatycznie i mieć pokrycie testami >= 80% dla ścieżek krytycznych.
+
+*   **Przenośność (Portability):**
+    *   **WNF-PRZEN-01:** Aplikacja (Frontend, Backend, Baza) musi być konteneryzowalna i uruchamialna za pomocą `docker-compose up` na maszynie deweloperskiej w czasie <= 2 minut (cold start).
+    *   **WNF-PRZEN-02:** Wszystkie konfiguracje środowiskowe (klucze API, endpointy, certyfikaty) muszą być zarządzane przez zmienne środowiskowe; zmiana dostawcy nie wymaga przebudowy obrazu kontenera.
+
+*   **Obserwowalność i Utrzymanie (Observability & Maintainability):**
+    *   **WNF-OBS-01:** System musi emitować metryki (latency histogramy, error rate, throughput) dla kluczowych endpointów; dane metryk agregowane są przez co najmniej 90 dni.
+    *   **WNF-OBS-02:** Centralne logowanie z poziomami TRACE/DEBUG/INFO/WARN/ERROR oraz możliwość korelacji logów po `request_id`/`transaction_id`.
+    *   **WNF-OBS-03:** Alerty krytyczne (np. spadek dostępności poniżej SLA, wzrost błędów >1% w 5-min oknie) muszą generować powiadomienia do kanału operacyjnego (e-mail/Slack) z czasem reakcji SLA 1 godzina.
 
 ### 5.3. Priorytetyzacja Atrybutów Jakościowych
 1.  **Krytyczne:** Bezpieczeństwo danych (RODO) i Wydajność (Odtwarzanie wideo). Bezpieczeństwo transakcji.
