@@ -587,15 +587,7 @@ System będzie komunikował się z zewnętrznymi systemami:
             * **Then:** System wysyła powiadomienie do właściciela celu i jego przełożonego "Zagrożenie realizacji celu".
             * **And:** Status celu zmienia się automatycznie na "At risk".
 
-## 4.13. Model danych OKR (hierarchia celów)
-
-Poniżej propozycja podstawowego modelu danych obsługującego cele OKR... (bez zmian)
-
-(skipping model details here in replacement as I am targeting the section until next US)
-
----
-
-### 4.14. [US-14] Weryfikacja Długoterminowej Retencji Wiedzy
+### 4.13. [US-14] Weryfikacja Długoterminowej Retencji Wiedzy
 
 * **Tytuł:** Pomiary retencji wiedzy (Long-term Retention)
 * **Opis:** System automatycznie sprawdza poziom zapamiętania wiedzy 30 dni po ukończeniu kursu.
