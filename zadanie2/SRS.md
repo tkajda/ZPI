@@ -77,23 +77,44 @@ System Intelligent LMS składa się z następujących głównych modułów funkc
 *   **Opis:** Przypisuje ścieżki podwładnym i monitoruje ich rozwój w kontekście potrzeb projektowych. Monitoruje rozwój i wellbeing podwładnych.
 
 ### 2.3. Ograniczenia Projektowe i Implementacyjne
-**Technologiczne:**
-*   **Budżet Infrastruktury:** Miesięczny koszt chmury max 2000 PLN (MVP). Wymusza optymalizację przechowywania wideo.
-*   **Integracje API:** Konieczność obsługi zewnętrznych interfejsów dostawców usług benefitowych (np. bramki voucherowe).
 
-**Organizacyjne:**
-*   **Zespół:** Dostępność materiałów szkoleniowych zależy od działu HR i Tech Leadów.
-*   **Dostawcy:** Dostępność usług w Marketplace zależy od podpisanych umów z partnerami zewnętrznymi (np. Medicover, Benefit Systems).
+1.  **Ograniczenie budżetowe (Infrastruktura):**
+    *   **Treść:** Miesięczny koszt utrzymania infrastruktury chmurowej nie może przekroczyć 2000 PLN w fazie MVP.
+    *   **Wpływ:** Wymusza optymalizację przechowywania wideo (np. kompresja) i dobór efektywnych kosztowo usług (np. serverless dla rzadziej używanych funkcji).
 
-**Prawne i Środowiskowe:**
-*   **RODO (GDPR):** System przetwarza dane osobowe i wyniki pracowników. Wymagane ścisłe role dostępu (ACL), szyfrowanie i logi audytowe.
+2.  **Ograniczenie technologiczne (Integracje):**
+    *   **Treść:** Konieczność obsługi zewnętrznych interfejsów dostawców usług benefitowych (np. bramki voucherowe) o różnej charakterystyce.
+    *   **Wpływ:** System musi implementować wzorce odporności (Retry, Circuit Breaker) i nie może polegać na synchronicznych odpowiedziach wszystkich dostawców (wymagane kolejki zadań).
+
+3.  **Ograniczenie prawne (RODO):**
+    *   **Treść:** System przetwarza dane osobowe i wyniki pracowników.
+    *   **Wpływ:** Konieczność implementacji ścisłych ról dostępu (ACL), szyfrowania danych w spoczynku i w transmisji oraz pełnych logów audytowych dostępu do danych.
+
+4.  **Ograniczenie organizacyjne (Dostawcy):**
+    *   **Treść:** Dostępność usług w Marketplace zależy od podpisanych umów z partnerami zewnętrznymi.
+    *   **Wpływ:** Katalog benefitów musi być dynamiczny i pozwalać na szybkie wyłączanie niedostępnych usług przez administratora bez wdrażania zmian w kodzie.
 
 ### 2.4. Założenia Projektowe
-*   **Dostępność Materiałów:** Dział HR dostarczy gotowe wideo i quizy przed startem systemu.
-*   **Przepustowość Sieci:** Sieć biurowa wytrzyma obciążenie przy jednoczesnym streamingu wideo przez wielu pracowników.
-*   **Skills Matrix:** Istnieje zdefiniowana macierz kompetencji, do której można mapować ścieżki.
-*   **Dostępność API:** Zakłada się, że kluczowi dostawcy benefitów udostępniają stabilne środowiska API do integracji.
-*   **Hybrydowa Realizacja:** Realizacja usług cyfrowych (kody, vouchery) odbywa się w czasie rzeczywistym, natomiast usługi fizyczne mogą wymagać uproszczonego potwierdzenia przez dział administracji (docelowo dążenie do 100% automatyzacji w celu osiągnięcia KPI 95% utylizacji).
+
+1.  **Założenie:** Dostępność Materiałów.
+    *   **Treść:** Dział HR dostarczy gotowe wideo i quizy przed startem systemu.
+    *   **Ryzyko:** Jeśli materiały nie będą gotowe, platforma będzie pusta ("Ghost Town").
+    *   **Walidacja:** Weryfikacja stanu materiałów na 2 tygodnie przed startem MVP.
+
+2.  **Założenie:** Przepustowość Sieci.
+    *   **Treść:** Sieć biurowa wytrzyma obciążenie przy jednoczesnym streamingu wideo przez wielu pracowników.
+    *   **Ryzyko:** Zator sieci, buforowanie wideo, frustracja użytkowników.
+    *   **Walidacja:** Testy obciążeniowe sieci wewnętrznej przed wdrożeniem.
+
+3.  **Założenie:** Dostępność API.
+    *   **Treść:** Zakłada się, że kluczowi dostawcy benefitów udostępniają stabilne środowiska API do integracji.
+    *   **Ryzyko:** Brak API lub niska jakość dokumentacji opóźni integrację.
+    *   **Walidacja:** Prototypowanie integracji (PoC) z kluczowymi dostawcami w fazie analizy.
+
+4.  **Założenie:** Hybrydowa Realizacja.
+    *   **Treść:** Realizacja usług cyfrowych (kody) jest natychmiastowa, a fizycznych może wymagać potwierdzenia manualnego.
+    *   **Ryzyko:** Niezadowolenie użytkowników z czasu oczekiwania na benefity fizyczne.
+    *   **Walidacja:** Jasna komunikacja czasu realizacji (SLA) w interfejsie użytkownika przy każdym beneficie.
 
 ---
 
